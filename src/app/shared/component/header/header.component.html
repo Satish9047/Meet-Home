@@ -1,1 +1,38 @@
-<p>header works!</p>
+<div class="container mx-auto navbar bg-base-100">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl">Meet Homes</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+      @if (!isLoggedIn) {
+        <menu class="hidden md:flex">
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </menu>
+      }
+      @if (isLoggedIn) {
+        <li>
+          <details>
+            <summary>User</summary>
+            <ul class="p-2 bg-base-100 rounded-t-none">
+              <li><a>Profile</a></li>
+              <li><a>Logout</a></li>
+            </ul>
+          </details>
+        </li>
+      }
+
+      @if (!isLoggedIn) {
+        <li class="md:hidden">
+          <details>
+            <summary>menu</summary>
+            <ul class="p-2 bg-base-100 rounded-t-none">
+              <li><a>login</a></li>
+              <li><a>Register</a></li>
+            </ul>
+          </details>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
