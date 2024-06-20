@@ -19,7 +19,11 @@
         <p>{{ house.location }}</p>
         <p>${{ house.price }}</p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Details</button>
+          <button class="btn btn-primary">
+            <routerLink [routerLink]="['housedetail', house.id]"
+              >Details</routerLink
+            >
+          </button>
         </div>
       </div>
     </div>
