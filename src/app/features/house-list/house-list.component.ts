@@ -2,11 +2,12 @@ import { NgFor } from '@angular/common';
 import { IHouse } from '../../core/interface/app';
 import { HouseService } from './../../core/services/house.service';
 import { Component, OnInit } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-house-list',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, NgOptimizedImage],
   templateUrl: './house-list.component.html',
   styleUrl: './house-list.component.css',
 })

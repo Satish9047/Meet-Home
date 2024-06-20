@@ -6,11 +6,12 @@
     >
       <figure>
         <img
-          src="{{ house.imageUrl }}"
+          [ngSrc]="house.imageUrl"
           alt="{{ house.house }}"
           height="100"
-          width="350"
+          width="300"
           class="rounded-xl object-cover w-full h-52"
+          priority
         />
       </figure>
       <div class="card-body">
