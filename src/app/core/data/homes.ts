@@ -11,7 +11,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-1.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -29,7 +29,7 @@ export const houses: IHouse[] = [
     bedrooms: 2,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/nature',
+    imageUrl: '/home-imgs/home-2.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -48,7 +48,7 @@ export const houses: IHouse[] = [
     bedrooms: 4,
     bathrooms: 3,
     washrooms: 2,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-3.jpg',
     totalFloor: 3,
     available: true,
     description:
@@ -66,7 +66,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 0,
-    imageUrl: 'https://placeimg.com/640/480/tech',
+    imageUrl: '/home-imgs/home-4.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -84,7 +84,7 @@ export const houses: IHouse[] = [
     bedrooms: 2,
     bathrooms: 2.5,
     washrooms: 0,
-    imageUrl: 'https://placeimg.com/640/480/water',
+    imageUrl: '/home-imgs/home-5.jpg',
     totalFloor: 3,
     available: false,
     description:
@@ -102,7 +102,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 0,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-6.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -120,7 +120,7 @@ export const houses: IHouse[] = [
     bedrooms: 4,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/people',
+    imageUrl: '/home-imgs/home-7.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -138,7 +138,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-8.jpg',
     totalFloor: 1,
     available: false,
     description:
@@ -156,7 +156,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-9.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -174,7 +174,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-10.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -192,7 +192,7 @@ export const houses: IHouse[] = [
     bedrooms: 2,
     bathrooms: 1.5,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-11.webp',
     totalFloor: 1,
     available: true,
     description:
@@ -210,7 +210,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-12.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -228,7 +228,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-13.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -246,7 +246,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2.5,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-14.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -264,7 +264,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-15.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -282,7 +282,7 @@ export const houses: IHouse[] = [
     bedrooms: 2,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-16.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -300,7 +300,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-17.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -318,7 +318,7 @@ export const houses: IHouse[] = [
     bedrooms: 5,
     bathrooms: 4,
     washrooms: 2,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-18.jpg',
     totalFloor: 2,
     available: true,
     description:
@@ -336,7 +336,7 @@ export const houses: IHouse[] = [
     bedrooms: 3,
     bathrooms: 2,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-19.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -354,7 +354,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-20.jpg',
     totalFloor: 1,
     available: true,
     description:
@@ -372,7 +372,7 @@ export const houses: IHouse[] = [
     bedrooms: 6,
     bathrooms: 5,
     washrooms: 2,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-21.jpg',
     totalFloor: 3,
     available: true,
     description:
@@ -390,7 +390,7 @@ export const houses: IHouse[] = [
     bedrooms: 1,
     bathrooms: 1,
     washrooms: 1,
-    imageUrl: 'https://placeimg.com/640/480/arch',
+    imageUrl: '/home-imgs/home-22.jpg',
     totalFloor: 1,
     available: true,
     description:

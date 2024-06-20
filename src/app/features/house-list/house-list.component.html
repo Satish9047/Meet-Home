@@ -1,15 +1,22 @@
 <div class="container mx-auto my-4 p-4 flex justify-center">
   <div class="flex flex-wrap justify-center lg:justify-between">
-    <div class="card max-w-96 bg-base-100 shadow-xl">
+    <div
+      class="card min-w-96 bg-base-100 shadow-xl mt-6"
+      *ngFor="let house of houses; let i = index"
+    >
       <figure>
         <img
-          src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-          alt="Shoes"
+          src="{{ house.imageUrl }}"
+          alt="{{ house.house }}"
+          height="100"
+          width="350"
+          class="rounded-xl object-cover w-full h-52"
         />
       </figure>
       <div class="card-body">
-        <h2 class="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <h2 class="card-title">{{ house.house }}</h2>
+        <p>{{ house.location }}</p>
+        <p>${{ house.price }}</p>
         <div class="card-actions justify-end">
           <button class="btn btn-primary">Buy Now</button>
         </div>
