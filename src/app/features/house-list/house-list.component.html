@@ -1,7 +1,7 @@
 <div class="container mx-auto my-4 p-4 flex justify-center">
-  <div class="flex flex-wrap justify-center lg:justify-between">
+  <div class="md:flex flex-wrap justify-center lg:justify-between">
     <div
-      class="card min-w-96 bg-base-100 shadow-xl mt-6"
+      class="card w-full md:w-auto md:min-w-96 bg-slate-600 shadow-xl mt-6"
       *ngFor="let house of houses; let i = index"
     >
       <figure>
@@ -9,8 +9,8 @@
           [ngSrc]="house.imageUrl"
           alt="{{ house.house }}"
           height="100"
-          width="300"
-          class="rounded-xl object-cover w-full h-52"
+          width="200"
+          class="rounded-xl object-cover h-52 w-full overflow-hidden min-w-40 max-w-96"
           priority
         />
       </figure>
@@ -19,7 +19,7 @@
         <p>{{ house.location }}</p>
         <p>${{ house.price }}</p>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary">Buy Now</button>
+          <button class="btn btn-primary">Details</button>
         </div>
       </div>
     </div>
