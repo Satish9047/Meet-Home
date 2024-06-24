@@ -6,8 +6,8 @@
     <ul class="menu menu-horizontal px-1">
       @if (!isLoggedIn) {
         <menu class="hidden md:flex">
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <li><routerLink routerLink="login">Login</routerLink></li>
+          <li><roterLink routerLink="register">Register</roterLink></li>
         </menu>
       }
       @if (isLoggedIn) {

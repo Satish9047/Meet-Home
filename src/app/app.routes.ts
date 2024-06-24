@@ -15,6 +15,11 @@ export const routes: Routes = [
     title: 'login',
   },
   {
+    path: 'register',
+    component: LoginComponent,
+    title: 'register',
+  },
+  {
     path: 'housedetail/:id',
     component: HouseDetailsComponent,
     title: 'housedetail',
