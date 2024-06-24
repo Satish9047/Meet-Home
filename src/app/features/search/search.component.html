@@ -1,11 +1,22 @@
 <div class="container mx-auto px-4">
-  <label class="input input-bordered flex items-center gap-2">
-    <input type="text" class="grow" placeholder="Search" />
+  <form
+    class="input input-bordered flex items-center gap-2"
+    [formGroup]="searchForm"
+  >
+    <input
+      type="text"
+      class="grow"
+      placeholder="Search"
+      formControlName="searchText"
+      (keyup.enter)="handleSearch()"
+    />
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
       fill="currentColor"
       class="w-4 h-4 opacity-70"
+      type="submit"
+      (click)="handleSearch()"
     >
       <path
         fill-rule="evenodd"
@@ -13,5 +24,5 @@
         clip-rule="evenodd"
       />
     </svg>
-  </label>
+  </form>
 </div>
