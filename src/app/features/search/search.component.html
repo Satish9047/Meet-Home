@@ -6,9 +6,10 @@
     <input
       type="text"
       class="grow"
-      placeholder="Search houses ..."
+      placeholder="Search"
       formControlName="searchText"
       (keyup.enter)="handleSearch()"
+      (input)="handleSearch()"
     />
     <svg
       xmlns="http://www.w3.org/2000/svg"
