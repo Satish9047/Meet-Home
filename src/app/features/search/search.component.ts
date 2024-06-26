@@ -19,6 +19,8 @@ export class SearchComponent {
   }
   handleSearch() {
     console.log(this.searchForm.value);
-    this.searchService.setSearch(this.searchForm.value);
+    const searchTerm: string = this.searchForm.get('searchText')?.value || '';
+    // console.log(searchTerm, 'hello form seach term');
+    this.searchService.setSearch(searchTerm);
   }
 }

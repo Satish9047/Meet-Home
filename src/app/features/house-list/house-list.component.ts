@@ -4,6 +4,7 @@ import { HouseService } from './../../core/services/house.service';
 import { Component, OnInit } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SearchService } from '../../core/services/search.service';
 
 @Component({
   selector: 'app-house-list',
@@ -14,8 +15,23 @@ import { RouterModule } from '@angular/router';
 })
 export class HouseListComponent implements OnInit {
   houses: IHouse[] = [];
-  constructor(private houseService: HouseService) {}
+  filteredHouse: IHouse[] = [];
+  constructor(
+    private houseService: HouseService,
+    private searchService: SearchService,
+  ) {}
   ngOnInit() {
     this.houses = this.houseService.getAllHouses();
+
+    this.searchService.search$.subscribe((search) => {
+      if (search) {
+        this.filteredHouse = this.houses.filter((house) =>
+          house.house.toLowerCase().includes(search.toLowerCase()),
+        );
+        console.log(this.filteredHouse);
+      } else {
+        this.filteredHouse = this.houses;
+      }
+    });
   }
 }
