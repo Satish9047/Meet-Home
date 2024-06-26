@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { SearchService } from '../../core/services/search.service';
+
 @Component({
   selector: 'app-search',
   standalone: true,
@@ -10,13 +12,13 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class SearchComponent {
   searchForm: FormGroup;
-  constructor() {
+  constructor(private searchService: SearchService) {
     this.searchForm = new FormGroup({
       searchText: new FormControl(''),
     });
   }
   handleSearch() {
-    console.log('hello search');
     console.log(this.searchForm.value);
+    this.searchService.setSearch(this.searchForm.value);
   }
 }
