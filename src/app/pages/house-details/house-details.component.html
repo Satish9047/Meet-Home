@@ -1,23 +1,24 @@
 <div class="container mx-auto my-2 p-4">
-  <!-- <div>
+  <div>
     <figure>
-      <img [ngSrc]="house.imageUrl" alt="{{ house.house }}" />
+      <img src="house.imageUrl" alt="{{ house?.house }}" />
     </figure>
     <div>
-      <h1>{{ house.house }}</h1>
-      <p>location: {{ house.location }}</p>
-      <p>area: {{ house.area }}</p>
-      <p>kitchen: {{ house.kitchen }}</p>
-      <p>bedrooms: {{ house.bedrooms }}</p>
-      <p>washrooms: {{ house.washrooms }}</p>
-      <p>bathrooms: {{ house.bathrooms }}</p>
-      <p>totalFloor: {{ house.totalFloor }}</p>
-      <p>house: {{ house.available }}</p>
-      <p>Price: {{ house.price }}</p>
-      <p>description: {{ house.description }}</p>
+      <h1>{{ house?.house }}</h1>
+      <p>location: {{ house?.location }}</p>
+      <p>area: {{ house?.area }}</p>
+      <p>kitchen: {{ house?.kitchen }}</p>
+      <p>bedrooms: {{ house?.bedrooms }}</p>
+      <p>washrooms: {{ house?.washrooms }}</p>
+      <p>bathrooms: {{ house?.bathrooms }}</p>
+      s
+      <p>totalFloor: {{ house?.totalFloor }}</p>
+      <p>house: {{ house?.available }}</p>
+      <p>Price: {{ house?.price }}</p>
+      <p>description: {{ house?.description }}</p>
     </div>
   </div>
-</div> -->
+
   <p>house-details works!</p>
   <p>the house id is {{ houseId }}</p>
 </div>
