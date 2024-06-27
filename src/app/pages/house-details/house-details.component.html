@@ -1,8 +1,13 @@
-<div class="container mx-auto my-2 p-4">
-  <div>
-    <figure>
-      <img src="house.imageUrl" alt="{{ house?.house }}" />
+<div class="container mx-auto my-2 p-4 flex gap-4">
+  <div class="w-2/6">
+    <figure
+      class="relative h-auto w-full overflow-hidden rounded-lg bg-white group-hover:opacity-75"
+    >
+      <img src="{{ house?.imageUrl }}" alt="{{ house?.house }}" />
     </figure>
+  </div>
+
+  <div class="w-4/6">
     <div>
       <h1>{{ house?.house }}</h1>
       <p>location: {{ house?.location }}</p>
@@ -11,14 +16,10 @@
       <p>bedrooms: {{ house?.bedrooms }}</p>
       <p>washrooms: {{ house?.washrooms }}</p>
       <p>bathrooms: {{ house?.bathrooms }}</p>
-      s
       <p>totalFloor: {{ house?.totalFloor }}</p>
       <p>house: {{ house?.available }}</p>
       <p>Price: {{ house?.price }}</p>
       <p>description: {{ house?.description }}</p>
     </div>
   </div>
-
-  <p>house-details works!</p>
-  <p>the house id is {{ houseId }}</p>
 </div>
