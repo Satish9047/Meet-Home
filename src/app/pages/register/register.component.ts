@@ -27,6 +27,6 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registerForm.value);
+    console.log(this.registerForm);
   }
 }

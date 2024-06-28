@@ -23,6 +23,17 @@
             required
             class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
+          @if (
+            registerForm.controls["email"].touched &&
+            registerForm.controls["email"].errors?.["required"]
+          ) {
+            <span class="text-sm text-red-500">email is mandatory</span>
+          } @else if (
+            registerForm.controls["email"].touched &&
+            registerForm.controls["email"].errors?.["email"]
+          ) {
+            <span class="text-sm text-red-500">invalid email</span>
+          }
         </div>
       </div>
 
@@ -49,13 +60,27 @@
             required
             class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
+          @if (
+            registerForm.controls["password"].touched &&
+            registerForm.controls["password"].errors?.["required"]
+          ) {
+            <span class="text-sm text-red-500">password is mandatory</span>
+          } @else if (
+            registerForm.controls["password"].touched &&
+            registerForm.controls["password"].errors?.["minlength"]
+          ) {
+            <span class="text-sm text-red-500"
+              >password must be min 6 length</span
+            >
+          }
         </div>
       </div>
 
       <div>
         <button
           type="submit"
-          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-slate-500"
+          [disabled]="registerForm.invalid"
         >
           Register
         </button>
