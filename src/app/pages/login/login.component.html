@@ -23,8 +23,19 @@
             autocomplete="email"
             formControlName="email"
             required
-            class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset text-white ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-inset text-white ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
+          @if (
+            loginForm.controls["email"].touched &&
+            loginForm.controls["email"].errors?.["required"]
+          ) {
+            <span class="text-sm text-red-400">email is mandatory</span>
+          } @else if (
+            loginForm.controls["email"].touched &&
+            loginForm.controls["email"].errors?.["email"]
+          ) {
+            <span class="text-sm text-red-400">invalid email</span>
+          }
         </div>
       </div>
 
@@ -51,8 +62,21 @@
             autocomplete="current-password"
             formControlName="password"
             required
-            class="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset text-white ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-inset text-white ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
+          @if (
+            loginForm.controls["email"].touched &&
+            loginForm.controls["password"].errors?.["required"]
+          ) {
+            <span class="text-sm text-red-400">password is mandatory</span>
+          } @else if (
+            loginForm.controls["email"].touched &&
+            loginForm.controls["password"].errors?.["minlength"]
+          ) {
+            <span class="text-sm text-red-400"
+              >password must be min 6 length</span
+            >
+          }
         </div>
       </div>
 
