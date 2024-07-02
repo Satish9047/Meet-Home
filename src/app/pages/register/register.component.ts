@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { LoadingSpinnerComponent } from '../../shared/component/loading-spinner/loading-spinner.component';
 import { CommonModule } from '@angular/common';
+import { ToastComponent } from '../../shared/component/toast/toast.component';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     LoadingSpinnerComponent,
     CommonModule,
+    ToastComponent,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
@@ -25,6 +27,7 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent {
   registerForm: FormGroup;
   isLoading = false;
+  error: string | null = null;
 
   constructor(
     private AuthService: AuthService,
@@ -50,13 +53,15 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        console.log(error);
+        console.log(error.error.error.message);
+        this.error = error.error.error.message;
         this.isLoading = false;
-        this.router.navigate(['/login']);
+        this.registerForm.reset();
       },
       complete: () => {
         console.log('complete');
         this.isLoading = false;
+        this.router.navigate(['/login']);
       },
     });
   }
