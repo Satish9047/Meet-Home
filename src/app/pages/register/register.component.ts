@@ -1,6 +1,6 @@
 import { AuthService } from './../../core/services/auth.service';
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -26,7 +26,10 @@ export class RegisterComponent {
   registerForm: FormGroup;
   isLoading = false;
 
-  constructor(private AuthService: AuthService) {
+  constructor(
+    private AuthService: AuthService,
+    private router: Router,
+  ) {
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -44,10 +47,12 @@ export class RegisterComponent {
       next: (resData) => {
         console.log(resData);
         this.isLoading = false;
+        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.log(error);
         this.isLoading = false;
+        this.router.navigate(['/login']);
       },
       complete: () => {
         console.log('complete');

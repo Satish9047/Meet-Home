@@ -91,7 +91,9 @@
         </button>
       </div>
     </form>
-    <div *ngIf="isLoading"><app-loading-spinner /></div>
+    <div *ngIf="isLoading" class="text-center">
+      <app-loading-spinner />
+    </div>
 
     <p class="mt-10 text-center text-sm text-gray-300">
       Already have an account?
