@@ -54,7 +54,10 @@ export class RegisterComponent {
       },
       error: (errorMessage: string) => {
         console.log(errorMessage);
-        // this.error = errorMessage;
+        this.error = errorMessage;
+        setTimeout(() => {
+          this.error = null;
+        }, 3000);
         this.isLoading = false;
         this.registerForm.reset();
       },

@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  error: string | null = null;
   isLoading = false;
+  error: string | null = null;
 
   constructor(
     private authService: AuthService,
@@ -48,6 +48,7 @@ export class LoginComponent {
       },
       error: (errorMessage) => {
         console.log(errorMessage);
+        this.error = errorMessage;
         this.isLoading = false;
       },
       complete: () => {

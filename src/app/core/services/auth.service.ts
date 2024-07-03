@@ -67,9 +67,6 @@ export class AuthService {
       case 'EMAIL_EXISTS':
         errorMessage = 'This email already exists';
         break;
-      case 'INVALID_PASSWORD':
-        errorMessage = 'Invalid password';
-        break;
       case 'EMAIL_NOT_FOUND':
         errorMessage = 'This email is not registered';
         break;
@@ -77,7 +74,7 @@ export class AuthService {
         errorMessage = 'Invalid password';
         break;
       case 'INVALID_LOGIN_CREDENTIALS':
-        errorMessage = 'password is not correct';
+        errorMessage = 'invalid login credentials';
         break;
       default:
         errorMessage = 'Unknown error occurred';
