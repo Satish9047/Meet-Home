@@ -54,7 +54,7 @@ export class RegisterComponent {
       },
       error: (errorMessage: string) => {
         console.log(errorMessage);
-        this.error = errorMessage;
+        // this.error = errorMessage;
         this.isLoading = false;
         this.registerForm.reset();
       },

@@ -4,19 +4,30 @@ import { RouterLink } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
 import { LoadingSpinnerComponent } from '../../shared/component/loading-spinner/loading-spinner.component';
+import { ToastComponent } from '../../shared/component/toast/toast.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, LoadingSpinnerComponent],
+  imports: [
+    RouterLink,
+    ReactiveFormsModule,
+    LoadingSpinnerComponent,
+    ToastComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  error: string | null = null;
   isLoading = false;
 
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [
@@ -35,12 +46,13 @@ export class LoginComponent {
         console.log(resData);
         this.isLoading = false;
       },
-      error: (error) => {
-        console.log(error);
+      error: (errorMessage) => {
+        console.log(errorMessage);
         this.isLoading = false;
       },
       complete: () => {
         console.log('complete');
+        this.router.navigate(['/']);
       },
     });
   }
