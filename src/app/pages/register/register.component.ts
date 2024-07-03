@@ -52,9 +52,9 @@ export class RegisterComponent {
         this.isLoading = false;
         this.router.navigate(['/login']);
       },
-      error: (error) => {
-        console.log(error.error.error.message);
-        this.error = error.error.error.message;
+      error: (errorMessage: string) => {
+        console.log(errorMessage);
+        this.error = errorMessage;
         this.isLoading = false;
         this.registerForm.reset();
       },
