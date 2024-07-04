@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Subject, tap, throwError } from 'rxjs';
+import { User } from '../model/user.model';
+import exp from 'constants';
 
 interface IAuthResponseData {
   idToken: string;
@@ -15,6 +17,7 @@ interface IAuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
+  user = new Subject<User>();
   constructor(private http: HttpClient) {}
 
   /**
@@ -34,7 +37,17 @@ export class AuthService {
           returnSecureToken: true,
         },
       )
-      .pipe(catchError(this.handleError));
+      .pipe(
+        catchError(this.handleError),
+        tap((resData) => {
+          this.authHandler(
+            resData.email,
+            resData.localId,
+            resData.idToken,
+            Number(resData.expireIn),
+          );
+        }),
+      );
   }
 
   /**
@@ -80,5 +93,16 @@ export class AuthService {
         errorMessage = 'Unknown error occurred';
     }
     return throwError(() => new Error(errorMessage));
+  }
+
+  private authHandler(
+    email: string,
+    userId: string,
+    token: string,
+    expiresIn: number,
+  ) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, userId, token, expirationDate);
+    this.user.next(user);
   }
 }
