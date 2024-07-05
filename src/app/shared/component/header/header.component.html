@@ -13,7 +13,7 @@
       @if (isAuthenticated) {
         <li>
           <details>
-            <summary>User</summary>
+            <summary>{{ user?.email }}</summary>
             <ul class="p-2 bg-base-100 rounded-t-none">
               <li><a>Profile</a></li>
               <li><a>Logout</a></li>
