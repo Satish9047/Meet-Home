@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Subject, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Subject, tap, throwError } from 'rxjs';
 import { User } from '../model/user.model';
 
 interface IAuthResponseData {
   idToken: string;
   email: string;
   refreshToken: string;
-  expireIn: string;
+  expiresIn: string;
   localId: string;
   registered?: boolean;
 }
@@ -16,7 +16,7 @@ interface IAuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  user = new Subject<User | null>();
+  user = new BehaviorSubject<User | null>(null);
   constructor(private http: HttpClient) {}
 
   /**
@@ -43,10 +43,36 @@ export class AuthService {
             resData.email,
             resData.localId,
             resData.idToken,
-            Number(resData.expireIn),
+            Number(resData.expiresIn),
           );
         }),
       );
+  }
+
+  autoLogin() {
+    console.log('autoLogin');
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _tokenExpirationDate: string;
+    } = JSON.parse(localStorage.getItem('userData') || '{}');
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate),
+    );
+    console.log(loadedUser.token, 'check token');
+
+    if (loadedUser.token) {
+      console.log('autoLogin success');
+      this.user.next(loadedUser);
+    }
   }
 
   /**
@@ -107,5 +133,6 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem('userData', JSON.stringify(user));
   }
 }
