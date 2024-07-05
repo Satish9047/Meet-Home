@@ -4,13 +4,13 @@
   </div>
   <div class="flex-none">
     <ul class="menu menu-horizontal px-1">
-      @if (!isLoggedIn) {
+      @if (!isAuthenticated) {
         <menu class="hidden md:flex">
           <li><a routerLink="login">Login</a></li>
           <li><a routerLink="register">Register</a></li>
         </menu>
       }
-      @if (isLoggedIn) {
+      @if (isAuthenticated) {
         <li>
           <details>
             <summary>User</summary>
@@ -22,7 +22,7 @@
         </li>
       }
 
-      @if (!isLoggedIn) {
+      @if (!isAuthenticated) {
         <li class="md:hidden">
           <details>
             <summary>menu</summary>
