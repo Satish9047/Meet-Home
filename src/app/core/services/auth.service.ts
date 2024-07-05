@@ -16,7 +16,7 @@ interface IAuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  user = new Subject<User>();
+  user = new Subject<User | null>();
   constructor(private http: HttpClient) {}
 
   /**
@@ -67,6 +67,10 @@ export class AuthService {
         },
       )
       .pipe(catchError(this.handleError));
+  }
+
+  getLogout() {
+    this.user.next(null);
   }
 
   private handleError(errorRes: HttpErrorResponse) {
