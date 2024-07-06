@@ -43,28 +43,20 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    console.log(this.registerForm);
     const { email, password } = this.registerForm.value;
     this.isLoading = true;
     this.AuthService.getRegister(email, password).subscribe({
       next: (resData) => {
-        console.log(resData);
         this.isLoading = false;
         this.router.navigate(['/login']);
       },
       error: (errorMessage: string) => {
-        console.log(errorMessage);
         this.error = errorMessage;
         setTimeout(() => {
           this.error = null;
         }, 3000);
         this.isLoading = false;
         this.registerForm.reset();
-      },
-      complete: () => {
-        console.log('complete');
-        this.isLoading = false;
-        this.router.navigate(['/login']);
       },
     });
   }

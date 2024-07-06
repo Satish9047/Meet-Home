@@ -43,17 +43,12 @@ export class LoginComponent {
     this.isLoading = true;
     this.authService.getLogin(email, password).subscribe({
       next: (resData) => {
-        console.log(resData);
         this.isLoading = false;
+        this.router.navigate(['/']);
       },
       error: (errorMessage) => {
-        console.log(errorMessage);
         this.error = errorMessage;
         this.isLoading = false;
-      },
-      complete: () => {
-        console.log('complete');
-        this.router.navigate(['/']);
       },
     });
   }

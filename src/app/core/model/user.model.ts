@@ -7,12 +7,9 @@ export class User {
   ) {}
 
   get token() {
-    console.log('before expire check');
     if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
-      console.log('expired');
       return null;
     }
-    console.log('after : not expired');
     return this._token;
   }
 }

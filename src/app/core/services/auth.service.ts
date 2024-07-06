@@ -56,7 +56,6 @@ export class AuthService {
   }
 
   autoLogin() {
-    console.log('autoLogin');
     const userData: {
       email: string;
       id: string;
@@ -73,10 +72,8 @@ export class AuthService {
       userData._token,
       new Date(userData._tokenExpirationDate),
     );
-    console.log(loadedUser.token, 'check token');
 
     if (loadedUser.token) {
-      console.log('autoLogin success');
       this.user.next(loadedUser);
       const expirationDuration =
         new Date(userData._tokenExpirationDate).getTime() -
@@ -122,7 +119,6 @@ export class AuthService {
   }
 
   private handleError(errorRes: HttpErrorResponse) {
-    console.log(errorRes, 'error direct');
     let errorMessage = 'Unknown error occurred';
     if (!errorRes.error.error || !errorRes.error.error) {
       return throwError(() => new Error(errorMessage));

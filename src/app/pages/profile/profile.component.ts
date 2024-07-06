@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
         this.router.navigate(['/login']);
       }
       this.user = user;
-      console.log(this.user, 'from profile');
     });
   }
 }

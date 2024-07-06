@@ -18,13 +18,10 @@ export class HouseDetailsComponent implements OnInit {
     private houseService: HouseService,
   ) {}
   ngOnInit() {
-    console.log(this.route, 'snapshot');
     this.houseId = Number(this.route.snapshot.params['id']);
-    console.log(this.houseId);
 
     if (this.houseId) {
       this.houseService.getHouseById(this.houseId).subscribe((data) => {
-        console.log(data);
         this.house = data;
       });
     }
