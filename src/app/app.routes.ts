@@ -3,6 +3,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HouseDetailsComponent } from './pages/house-details/house-details.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -24,5 +25,9 @@ export const routes: Routes = [
     path: 'housedetail/:id',
     component: HouseDetailsComponent,
     title: 'housedetail',
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   },
 ];
