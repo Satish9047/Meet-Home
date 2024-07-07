@@ -33,26 +33,33 @@ export class AuthService {
    * @returns Observavle
    */
   getLogin(email: string, password: string) {
-    return this.http
-      .post<IAuthResponseData>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQoWg4rHTnFfgtM30Y-vB6w6Mt2rYKx-c',
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true,
-        },
-      )
-      .pipe(
-        catchError(this.handleError),
-        tap((resData) => {
-          this.authHandler(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            Number(resData.expiresIn),
-          );
-        }),
-      );
+    return (
+      this.http
+        // .post<IAuthResponseData>('http://localhost:3000/api/v1/auth/login', {
+        //   email: email,
+        //   password: password,
+        //   returnSecureToken: true,
+        // })
+        .post<IAuthResponseData>(
+          'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAQoWg4rHTnFfgtM30Y-vB6w6Mt2rYKx-c',
+          {
+            email: email,
+            password: password,
+            returnSecureToken: true,
+          },
+        )
+        .pipe(
+          catchError(this.handleError),
+          tap((resData) => {
+            this.authHandler(
+              resData.email,
+              resData.localId,
+              resData.idToken,
+              Number(resData.expiresIn),
+            );
+          }),
+        )
+    );
   }
 
   autoLogin() {
