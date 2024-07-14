@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { asyncHandler } from '../utils/asyncHandler';
 import { User } from '../models/user.model';
 import { ApiError } from '../utils/apiError';
+import { ApiResponse } from '../utils/apiResponse';
 
 export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   console.log(req.body);
@@ -24,5 +25,11 @@ export const handleRegister = asyncHandler(
       email,
       password,
     });
+
+    if (newUser) {
+      const { password, ...data } = newUser.toObject();
+      const response = new ApiResponse(201, data, 'User created successfully');
+      res.status(201).json(response);
+    }
   },
 );
