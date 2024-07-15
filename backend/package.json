@@ -28,6 +28,8 @@
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.5",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pino": "^9.2.0",
+    "pino-pretty": "^11.2.1"
   }
 }
