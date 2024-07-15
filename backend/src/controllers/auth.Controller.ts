@@ -4,6 +4,7 @@ import { ApiError } from '../utils/apiError';
 import { IUser, User } from '../models/user.model';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
+import logger from '../utils/logger';
 
 //LOGIN HANDLER
 export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
@@ -28,6 +29,7 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   } else {
     const token = userExists.generateJwtToken();
     const { _id, email, createdAt, updatedAt } = userExists.toObject();
+    logger.info(`User ${email} logged in`);
     res.cookie('jwtToken', token, {
       httpOnly: true,
       expires: new Date(Date.now() + 1000 * 60 * 60 * 24),

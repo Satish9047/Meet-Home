@@ -1,16 +1,16 @@
 import pino from 'pino';
+import path from 'path';
 
-const logger = pino(
-  {
-    transport: {
-      target: 'pino-pretty',
-      options: {
-        colorize: true,
-      },
+const logPath = path.join(__dirname, 'app.log');
+const logger = pino({
+  transport: {
+    target: 'pino/file',
+    options: {
+      destination: logPath,
+      mkdir: true,
+      colorize: true,
     },
-    level: 'info',
   },
-  pino.destination('../lib/logs/app.log'),
-);
+});
 
 export default logger;
