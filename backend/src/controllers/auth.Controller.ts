@@ -28,12 +28,16 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   } else {
     const token = userExists.generateJwtToken();
     const { _id, email, createdAt, updatedAt } = userExists.toObject();
+    res.cookie('jwtToken', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+    });
     res
       .status(200)
       .json(
         new ApiResponse(
           200,
-          { _id, email, createdAt, updatedAt, jwtToken: token },
+          { _id, email, createdAt, updatedAt },
           'Login successful',
         ),
       );

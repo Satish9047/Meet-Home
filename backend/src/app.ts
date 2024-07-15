@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(cors());
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 
 app.use('/api/v1', router);
 
