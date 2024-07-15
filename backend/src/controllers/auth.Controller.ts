@@ -53,6 +53,7 @@ export const handleRegister = asyncHandler(
         },
       ]);
     }
+
     const newUser = await User.create({
       email,
       password,
