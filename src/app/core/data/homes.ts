@@ -21,7 +21,7 @@ export const houses: IHouse[] = [
   },
   {
     id: 2,
-    house: 'Spacious Two-Bedroom Condo',
+    house: 'Spacious Two-Bedroom Home',
     price: 1200,
     location: 'Midtown, Cityville',
     area: '800 sq ft',
@@ -33,7 +33,7 @@ export const houses: IHouse[] = [
     totalFloor: 2,
     available: true,
     description:
-      'Comfortable two-bedroom condo with ample living space and natural light. Ideal for couples or small families.',
+      'Comfortable two-bedroom home with ample living space and natural light. Ideal for couples or small families.',
     createdAt: new Date('2024-06-19'),
     updatedAt: new Date('2024-06-19'),
   },
