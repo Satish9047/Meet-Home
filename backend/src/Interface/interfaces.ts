@@ -1,6 +1,6 @@
 export interface IHouse {
   id: number;
-  house: string;
+  houseName: string;
   price: number;
   location: string;
   area: string;
