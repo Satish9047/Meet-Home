@@ -12,6 +12,7 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   const userExists = (await User.findOne({ email: email })) as IUser;
 
   if (!userExists) {
+    logger.error(`failed to login user ${email}, user didn't already exist.`);
     throw new ApiError(400, "User didn't exist", [
       {
         message: "User didn't exist",
@@ -21,6 +22,7 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
 
   const isPasswordCorrect = await userExists.comparePassword(password);
   if (!isPasswordCorrect) {
+    logger.error(`failed to login user ${email}, password didn't match.`);
     throw new ApiError(400, 'Invalid password', [
       {
         message: 'Invalid password',
@@ -53,6 +55,7 @@ export const handleRegister = asyncHandler(
     const userExists = await User.findOne({ email: email });
 
     if (userExists) {
+      logger.error(`failed to register user ${email}, user already exist.`);
       throw new ApiError(400, 'User already exists', [
         {
           message: 'User already exists',
@@ -72,6 +75,7 @@ export const handleRegister = asyncHandler(
         { _id, email, createdAt, updatedAt },
         'User created successfully',
       );
+      logger.info(`New user ${email} is registered successfully.`);
       res.status(201).json(response);
     }
   },
