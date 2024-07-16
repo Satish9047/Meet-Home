@@ -1,7 +1,7 @@
 import pino from 'pino';
 import path from 'path';
 
-const logPath = path.join(__dirname, 'app.log');
+const logPath = path.join(__dirname, '..', 'logs', 'app.log');
 const logger = pino({
   transport: {
     target: 'pino/file',
