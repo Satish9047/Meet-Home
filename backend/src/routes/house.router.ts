@@ -9,10 +9,11 @@ import {
 
 const houseRoute = Router();
 
-houseRoute.get('/', getHouse);
-houseRoute.get('/:id', getHousesById);
-houseRoute.post('/', addHouse);
-houseRoute.put('/:id', updateHouse);
-houseRoute.delete('/:id', deleteHouse);
+houseRoute.route('/').get(getHouse).post(addHouse);
+houseRoute
+  .route('/:id')
+  .get(getHousesById)
+  .put(updateHouse)
+  .delete(deleteHouse);
 
 export default houseRoute;
