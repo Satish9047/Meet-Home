@@ -1,5 +1,4 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from 'fs';
 
 // CONFIGURATION
 cloudinary.config({
@@ -10,8 +9,10 @@ cloudinary.config({
 
 // UPLOAD IMAGE
 const uploadOnCloudinary = async (localFilepath: string) => {
+  // console.log('inside', localFilepath);
   try {
-    if (!localFilepath) return null;
+    // if (!localFilepath) return null;
+    // console.log('check', localFilepath);
     //upload the file in clouninary
     const uploadResult = await cloudinary.uploader.upload(localFilepath, {
       resource_type: 'auto',
@@ -21,7 +22,8 @@ const uploadOnCloudinary = async (localFilepath: string) => {
     return uploadResult;
   } catch (error) {
     //remove the locally saved temorary file as the upload operation got failed
-    fs.unlinkSync(localFilepath);
+    // fs.unlinkSync(localFilepath);
+    console.log('error while uploading image cloudinary catch', error);
     return null;
   }
 };
