@@ -1,6 +1,6 @@
-import config from './configs/app.config';
-import connectDB from './db/mongo';
 import app from './app';
+import connectDB from './db/mongo';
+import config from './configs/app.config';
 
 connectDB()
   .then(() => {

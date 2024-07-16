@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 
 import config from '../configs/app.config';
 
