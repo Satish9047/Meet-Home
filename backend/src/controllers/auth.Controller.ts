@@ -30,7 +30,7 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
     ]);
   } else {
     const token = userExists.generateJwtToken();
-    const { _id, email, createdAt, updatedAt } = userExists.toObject();
+    const { _id, email, isAdmin, createdAt, updatedAt } = userExists.toObject();
     logger.info(`User ${email} logged in`);
     res.cookie('jwtToken', token, {
       httpOnly: true,
@@ -41,7 +41,7 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
       .json(
         new ApiResponse(
           200,
-          { _id, email, createdAt, updatedAt },
+          { _id, email, isAdmin, createdAt, updatedAt },
           'Login successful',
         ),
       );
@@ -66,13 +66,14 @@ export const handleRegister = asyncHandler(
     const newUser = await User.create({
       email,
       password,
+      isAdmin: false,
     });
 
     if (newUser) {
-      const { email, _id, createdAt, updatedAt } = newUser.toObject();
+      const { email, _id, isAdmin, createdAt, updatedAt } = newUser.toObject();
       const response = new ApiResponse(
         201,
-        { _id, email, createdAt, updatedAt },
+        { _id, email, isAdmin, createdAt, updatedAt },
         'User created successfully',
       );
       logger.info(`New user ${email} is registered successfully.`);
