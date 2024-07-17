@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import { asyncHandler } from '../utils/asyncHandler';
 import { House } from '../models/house.model';
 import { ApiResponse } from '../utils/apiResponse';
+import { asyncHandler } from '../utils/asyncHandler';
 
 /**
  *@description    Fetch all houses
