@@ -5,6 +5,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../configs/app.config';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
+import { User } from '../models/user.model';
 
 export const jwtVerify = asyncHandler(
   async (
@@ -31,9 +32,15 @@ export const admin = asyncHandler(
     res: Response,
     next: NextFunction,
   ) => {
-    if (!req.user || req.user?.isAdmin === false) {
+    if (!req.user || req.user.isAdmin === false) {
       return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
     }
+
+    const user = await User.findById(req.user._id);
+    if (!user || !user.isAdmin) {
+      return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
+    }
+
     next();
   },
 );
