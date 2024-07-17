@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 
-// import { asyncHandler } from '../utils/asyncHandler';
 import config from '../configs/app.config';
+import { User } from '../models/user.model';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
-import { User } from '../models/user.model';
 
+//VERIFY USER
 export const jwtVerify = asyncHandler(
   async (
     req: Request & { user?: JwtPayload },
@@ -16,16 +16,17 @@ export const jwtVerify = asyncHandler(
     if (!req.cookies.jwtToken)
       return res.status(401).json(new ApiResponse(401, {}, 'Unauthorized'));
 
-    const decode = jwt.verify(
+    const userData = jwt.verify(
       req.cookies.jwtToken,
       config.JWT_TOKEN_SECRET,
     ) as JwtPayload;
-    console.log('user data :', decode);
-    req.user = decode;
+
+    req.user = userData;
     next();
   },
 );
 
+//ADMIN ROUTE GUARD
 export const admin = asyncHandler(
   async (
     req: Request & { user?: JwtPayload },
