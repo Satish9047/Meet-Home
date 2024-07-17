@@ -19,7 +19,21 @@ export const jwtVerify = asyncHandler(
       req.cookies.jwtToken,
       config.JWT_TOKEN_SECRET,
     ) as JwtPayload;
+    console.log('user data :', decode);
     req.user = decode;
+    next();
+  },
+);
+
+export const admin = asyncHandler(
+  async (
+    req: Request & { user?: JwtPayload },
+    res: Response,
+    next: NextFunction,
+  ) => {
+    if (!req.user || req.user?.isAdmin === false) {
+      return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
+    }
     next();
   },
 );

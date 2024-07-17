@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { jwtVerify } from '../middlewares/jwt.middleware';
+import { admin, jwtVerify } from '../middlewares/jwt.middleware';
 import {
   getHouse,
   getHousesById,
@@ -11,11 +11,11 @@ import {
 
 const houseRoute = Router();
 
-houseRoute.route('/').get(getHouse).post(jwtVerify, addHouse);
+houseRoute.route('/').get(getHouse).post(jwtVerify, admin, addHouse);
 houseRoute
   .route('/:id')
   .get(getHousesById)
-  .put(jwtVerify, updateHouse)
-  .delete(jwtVerify, deleteHouse);
+  .put(jwtVerify, admin, updateHouse)
+  .delete(jwtVerify, admin, deleteHouse);
 
 export default houseRoute;
