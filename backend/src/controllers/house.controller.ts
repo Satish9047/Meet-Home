@@ -61,7 +61,7 @@ export const addHouse = asyncHandler(async (req: Request, res: Response) => {
 });
 
 /**
- * @description    Apdate a house
+ * @description    Update a house
  * @routes         PUT /api/v1/houses/:id
  * @access         Admin
  */

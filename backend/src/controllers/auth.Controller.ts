@@ -6,7 +6,11 @@ import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
 import logger from '../utils/logger';
 
-//LOGIN HANDLER
+/**
+ * @description    Login user
+ * @route          POST /api/v1/auth/login
+ * @access         Public
+ */
 export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body;
   const userExists = (await User.findOne({ email: email })) as IUser;
@@ -48,7 +52,11 @@ export const handleLogin = asyncHandler(async (req: Request, res: Response) => {
   }
 });
 
-// REGISTER HANDLER
+/**
+ * @description    Register user
+ * @route          POST /api/v1/auth/register
+ * @access         Public
+ */
 export const handleRegister = asyncHandler(
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
