@@ -55,6 +55,8 @@ export const getHousesById = asyncHandler(
  * @access         Admin
  */
 export const addHouse = asyncHandler(async (req: Request, res: Response) => {
+  const localFilePath = req.file?.path;
+  console.log(localFilePath);
   res.status(200).json({
     message: 'add house',
   });
