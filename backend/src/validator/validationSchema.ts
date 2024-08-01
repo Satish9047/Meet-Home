@@ -1,12 +1,20 @@
 import Joi from 'joi';
 
 export const authSchema = Joi.object({
-  email: Joi.string().email().required().messages({
-    'any.required': 'Email is required',
-    'any.only': 'Email must be a valid email',
-  }),
-  password: Joi.string().required().min(8).messages({
-    'any.required': 'Password is required',
-    'any.only': 'Password must be at least 8 characters',
-  }),
+  email: Joi.string().email().required(),
+  password: Joi.string().required().min(8),
+});
+
+export const houseSchema = Joi.object({
+  houseName: Joi.string().required(),
+  price: Joi.number().required(),
+  location: Joi.string().required(),
+  area: Joi.string().required(),
+  kitchen: Joi.number().required(),
+  bedrooms: Joi.number().required(),
+  bathrooms: Joi.number().required(),
+  washrooms: Joi.number().required(),
+  totalFloor: Joi.number().required(),
+  available: Joi.boolean().required(),
+  description: Joi.string().required(),
 });

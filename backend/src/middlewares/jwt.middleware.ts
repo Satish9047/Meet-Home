@@ -41,7 +41,7 @@ export const admin = asyncHandler(
     if (!user || !user.isAdmin) {
       return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
     }
-
+    req.user = user;
     next();
   },
 );

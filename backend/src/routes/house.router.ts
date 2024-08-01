@@ -1,6 +1,9 @@
 import { Router } from 'express';
+import { upload } from '../middlewares/multer.middleware';
 
 import { admin, jwtVerify } from '../middlewares/jwt.middleware';
+import { validateReqBody } from '../middlewares/validator.middleware';
+import { houseSchema } from '../validator/validationSchema';
 import {
   getHouse,
   getHousesById,
@@ -11,7 +14,16 @@ import {
 
 const houseRoute = Router();
 
-houseRoute.route('/').get(getHouse).post(jwtVerify, admin, addHouse);
+houseRoute
+  .route('/')
+  .get(getHouse)
+  .post(
+    jwtVerify,
+    admin,
+    upload.single('imageUrl'),
+    validateReqBody(houseSchema),
+    addHouse,
+  );
 houseRoute
   .route('/:id')
   .get(getHousesById)
