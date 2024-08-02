@@ -5,7 +5,10 @@ import logger from '../utils/logger';
 import { House } from '../models/house.model';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
-import { uploadOnCloudinary } from '../utils/cloudinary';
+import {
+  uploadOnCloudinary,
+  deleteImageFromCloudinary,
+} from '../utils/cloudinary';
 import { JwtPayload } from 'jsonwebtoken';
 
 /**
@@ -116,6 +119,7 @@ export const addHouse = asyncHandler(
     if (!house) {
       logger.error('error while adding house', house);
       fs.unlinkSync(localFilePath);
+      await deleteImageFromCloudinary(req.body.imageUrl);
       return res
         .status(400)
         .json(new ApiResponse(400, {}, 'error while adding house'));
@@ -158,6 +162,7 @@ export const deleteHouse = asyncHandler(async (req: Request, res: Response) => {
   }
 
   await House.deleteOne({ _id: houseId });
+  await deleteImageFromCloudinary(house.imageUrl);
   logger.info('house deleted in mongodb', house);
   res.status(200).json(new ApiResponse(200, { house }, 'House deleted'));
 });
