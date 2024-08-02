@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt, { JwtPayload, VerifyErrors } from 'jsonwebtoken';
 
 import config from '../configs/app.config';
 import { User } from '../models/user.model';
@@ -14,15 +14,22 @@ export const jwtVerify = asyncHandler(
     next: NextFunction,
   ) => {
     if (!req.cookies.jwtToken)
-      return res.status(401).json(new ApiResponse(401, {}, 'Unauthorized'));
+      return res
+        .status(401)
+        .json(new ApiResponse(401, {}, 'Unauthorized user'));
 
-    const userData = jwt.verify(
+    jwt.verify(
       req.cookies.jwtToken,
       config.JWT_TOKEN_SECRET,
-    ) as JwtPayload;
-
-    req.user = userData;
-    next();
+      (err: VerifyErrors | null, decoded: any) => {
+        if (err)
+          return res
+            .status(401)
+            .json(new ApiResponse(401, {}, 'token expired'));
+        req.user = decoded as JwtPayload;
+        next();
+      },
+    );
   },
 );
 
@@ -34,14 +41,13 @@ export const admin = asyncHandler(
     next: NextFunction,
   ) => {
     if (!req.user || req.user.isAdmin === false) {
-      return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
+      return res.status(403).json(new ApiResponse(403, {}, 'access Forbidden'));
     }
 
     const user = await User.findById(req.user._id);
     if (!user || !user.isAdmin) {
-      return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
+      return res.status(403).json(new ApiResponse(403, {}, 'access Forbidden'));
     }
-    console.log('hello from admin route guard');
     req.user = user;
     next();
   },
