@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import fs from 'fs';
 
 import logger from '../utils/logger';
 import { House } from '../models/house.model';
@@ -114,12 +115,14 @@ export const addHouse = asyncHandler(
     });
     if (!house) {
       logger.error('error while adding house', house);
+      fs.unlinkSync(localFilePath);
       return res
         .status(400)
         .json(new ApiResponse(400, {}, 'error while adding house'));
     }
 
     logger.info('house added in mongodb', house);
+    fs.unlinkSync(localFilePath);
     res
       .status(201)
       .json(new ApiResponse(201, house, 'House added successfully'));
@@ -143,7 +146,18 @@ export const updateHouse = asyncHandler(async (req: Request, res: Response) => {
  * @access         Admin
  */
 export const deleteHouse = asyncHandler(async (req: Request, res: Response) => {
-  res.status(200).json({
-    message: 'delete house',
-  });
+  const houseId = req.params.id;
+  if (!houseId) {
+    return res
+      .status(400)
+      .json(new ApiResponse(400, {}, 'houseId is required'));
+  }
+  const house = await House.findById(houseId);
+  if (!house) {
+    return res.status(404).json(new ApiResponse(404, {}, 'house not found'));
+  }
+
+  await House.deleteOne({ _id: houseId });
+  logger.info('house deleted in mongodb', house);
+  res.status(200).json(new ApiResponse(200, { house }, 'House deleted'));
 });
