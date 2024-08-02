@@ -1,3 +1,4 @@
+import mongoose, { Document } from 'mongoose';
 export interface IHouse {
   id: number;
   houseName: string;
@@ -15,4 +16,13 @@ export interface IHouse {
   description: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface ISchedule extends Document {
+  house: mongoose.Schema.Types.ObjectId;
+  user: mongoose.Schema.Types.ObjectId;
+  date: Date;
+  time: string;
+  visited: boolean;
+  userMessage: string;
 }
