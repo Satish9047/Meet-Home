@@ -36,7 +36,7 @@ const deleteImageFromCloudinary = async (imageUrl: string) => {
       cloudinaryPublicId || '',
     );
     //image has been deleted on cloudinary
-    console.log('image is deleted from cloudinary', deleteResult);
+    // console.log('image is deleted from cloudinary', deleteResult);
     return deleteResult;
   } catch (error) {
     // console.log('error while deleting image cloudinary catch', error);

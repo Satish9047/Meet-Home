@@ -138,11 +138,98 @@ export const addHouse = asyncHandler(
  * @routes         PUT /api/v1/houses/:id
  * @access         Admin
  */
-export const updateHouse = asyncHandler(async (req: Request, res: Response) => {
-  res.status(200).json({
-    message: 'update house',
-  });
-});
+export const updateHouse = asyncHandler(
+  async (req: Request & { user?: JwtPayload }, res: Response) => {
+    const houseId = req.params.id;
+    if (!houseId) {
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, 'houseId is required'));
+    }
+
+    const user = req.user;
+    if (!user || user.isAdmin === false) {
+      logger.fatal('unauthorized user trying to add house', user);
+      return res
+        .status(403)
+        .json(new ApiResponse(403, {}, 'unauthorized user'));
+    }
+
+    const house = await House.findById(houseId);
+    if (!house) {
+      return res.status(404).json(new ApiResponse(404, {}, 'house not found'));
+    }
+
+    const {
+      houseName,
+      price,
+      location,
+      area,
+      kitchen,
+      bedrooms,
+      bathrooms,
+      washrooms,
+      totalFloor,
+      available,
+      description,
+    } = req.body;
+
+    const localFilePath = req.file?.path;
+    if (!localFilePath) {
+      logger.error("didn't get localFilePath of an image", localFilePath);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, "didn't get localFilePath of an image"));
+    }
+
+    const uploadResult = await uploadOnCloudinary(localFilePath);
+    if (!uploadResult) {
+      logger.error('error while uploading to cloudinary', uploadResult);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, 'error while uploading to cloudinary'));
+    }
+
+    const updateHouse = await House.findByIdAndUpdate(
+      houseId,
+      {
+        houseName,
+        price,
+        location,
+        area,
+        kitchen,
+        bedrooms,
+        bathrooms,
+        washrooms,
+        imageUrl: uploadResult.url,
+        addedBy: user._id,
+        totalFloor,
+        available,
+        description,
+      },
+      {
+        new: true,
+        runValidators: true,
+      },
+    );
+
+    if (!updateHouse) {
+      logger.error('error while adding house', updateHouse);
+      fs.unlinkSync(localFilePath);
+      await deleteImageFromCloudinary(req.body.imageUrl);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, 'error while updating house'));
+    }
+
+    logger.info('house added in mongodb', updateHouse);
+    await deleteImageFromCloudinary(house.imageUrl);
+    fs.unlinkSync(localFilePath);
+    res
+      .status(201)
+      .json(new ApiResponse(201, updateHouse, 'house update successfully'));
+  },
+);
 
 /**
  * @description    Delete a house

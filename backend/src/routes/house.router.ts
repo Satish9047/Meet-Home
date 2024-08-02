@@ -27,7 +27,13 @@ houseRoute
 houseRoute
   .route('/:id')
   .get(getHousesById)
-  .put(jwtVerify, admin, updateHouse)
+  .put(
+    jwtVerify,
+    upload.single('imageUrl'),
+    validateReqBody(houseSchema),
+    admin,
+    updateHouse,
+  )
   .delete(jwtVerify, admin, deleteHouse);
 
 export default houseRoute;
