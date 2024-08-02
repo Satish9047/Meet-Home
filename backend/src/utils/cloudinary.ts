@@ -8,6 +8,11 @@ cloudinary.config({
 });
 
 // UPLOAD IMAGE
+/**
+ *
+ * @param     localFilepath - local file path of the image to be uploaded on cloudinary
+ * @returns   Cloudinary Image Info | null - result of the upload operation
+ */
 const uploadOnCloudinary = async (localFilepath: string) => {
   // console.log('inside', localFilepath);
   try {
@@ -28,6 +33,11 @@ const uploadOnCloudinary = async (localFilepath: string) => {
   }
 };
 
+/**
+ *
+ * @param     imageUrl - cloudinary image url of the image to be deleted from cloudinary
+ * @returns   boolean - true if the image has successfully deleted from cloudinary
+ */
 const deleteImageFromCloudinary = async (imageUrl: string) => {
   try {
     const cloudinaryPublicId = imageUrl.split('/').pop()?.split('.')[0];

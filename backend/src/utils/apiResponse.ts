@@ -1,3 +1,11 @@
+/**
+ * @class   ApiResponse
+ * @public
+ * @property  statusCode {number} - http status code
+ * @property  data {T} - response data
+ * @property  message {string} - response message
+ * @property  success {boolean} - response success
+ */
 export class ApiResponse<T> {
   statusCode: number;
   data: T;

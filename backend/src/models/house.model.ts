@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import { IHouse } from '../Interface/interfaces';
 
+/**
+ * @description   House schema
+ * @returns       void
+ */
 const houseSchema = new mongoose.Schema(
   {
     houseName: {

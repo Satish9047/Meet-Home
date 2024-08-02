@@ -16,7 +16,10 @@ export interface IUser extends Document {
   toObject(): any;
 }
 
-//USER SCHEMA
+/**
+ * @description   User schema
+ * @returns       void
+ */
 const userSchema = new mongoose.Schema<IUser>(
   {
     email: {
@@ -36,7 +39,10 @@ const userSchema = new mongoose.Schema<IUser>(
   { timestamps: true },
 );
 
-//HASHING THE PASSWORD BEFORE SAVING IT
+/**
+ * @description   Encrypt password before saving
+ * @returns       void
+ */
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) {
     return next();
@@ -46,12 +52,20 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-//COMPARING THE PASSWORD METHOD
+/**
+ *
+ * @param     password - password to be compared
+ * @returns   boolean - true if password matches else false
+ */
 userSchema.methods.comparePassword = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
-//GENETRATING JWT TOKEN
+/**
+ *
+ * @description   Generate jwt token
+ * @returns       string - jwt token
+ */
 userSchema.methods.generateJwtToken = function () {
   return jwt.sign(
     {

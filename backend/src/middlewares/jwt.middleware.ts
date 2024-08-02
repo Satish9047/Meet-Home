@@ -6,7 +6,13 @@ import { User } from '../models/user.model';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
 
-//VERIFY USER
+/**
+ * @description   Verify user
+ * @param         req - express request
+ * @param         res - express response
+ * @param         next - express next
+ * @returns       void
+ */
 export const jwtVerify = asyncHandler(
   async (
     req: Request & { user?: JwtPayload },
@@ -33,7 +39,13 @@ export const jwtVerify = asyncHandler(
   },
 );
 
-//ADMIN ROUTE GUARD
+/**
+ * @description   Admin route guard
+ * @param         req - express request
+ * @param         res - express response
+ * @param         next - express next function
+ * @returns       void
+ */
 export const admin = asyncHandler(
   async (
     req: Request & { user?: JwtPayload },

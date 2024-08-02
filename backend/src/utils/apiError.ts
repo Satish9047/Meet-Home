@@ -3,6 +3,15 @@ interface ErrorDetail {
 }
 
 //ERROR CLASS
+/**
+ * @class   ApiError
+ * @public
+ * @property  statusCode {number} - http status code
+ * @property  message {string} - error message
+ * @property  data {null} - error data
+ * @property  success {boolean} - error success
+ * @property  errors {ErrorDetail[]} - error details
+ */
 export class ApiError extends Error {
   statusCode: number;
   message: string;
