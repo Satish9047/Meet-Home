@@ -41,6 +41,7 @@ export const admin = asyncHandler(
     if (!user || !user.isAdmin) {
       return res.status(403).json(new ApiResponse(403, {}, 'Forbidden'));
     }
+    console.log('hello from admin route guard');
     req.user = user;
     next();
   },

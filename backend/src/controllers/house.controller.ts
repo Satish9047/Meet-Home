@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
 
+import logger from '../utils/logger';
 import { House } from '../models/house.model';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
+import { uploadOnCloudinary } from '../utils/cloudinary';
+import { JwtPayload } from 'jsonwebtoken';
 
 /**
  *@description    Fetch all houses
@@ -54,13 +57,74 @@ export const getHousesById = asyncHandler(
  * @routes         POST /api/v1/houses
  * @access         Admin
  */
-export const addHouse = asyncHandler(async (req: Request, res: Response) => {
-  const localFilePath = req.file?.path;
-  console.log(localFilePath);
-  res.status(200).json({
-    message: 'add house',
-  });
-});
+export const addHouse = asyncHandler(
+  async (req: Request & { user?: JwtPayload }, res: Response) => {
+    const user = req.user;
+    if (!user || user.isAdmin === false) {
+      logger.fatal('unauthorized user trying to add house', user);
+      return res
+        .status(403)
+        .json(new ApiResponse(403, {}, 'unauthorized user'));
+    }
+
+    const localFilePath = req.file?.path;
+    if (!localFilePath) {
+      logger.error("didn't get localFilePath of an image", localFilePath);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, "didn't get localFilePath of an image"));
+    }
+
+    const uploadResult = await uploadOnCloudinary(localFilePath!);
+    if (!uploadResult) {
+      logger.error('error while uploading to cloudinary', uploadResult);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, 'error while uploading to cloudinary'));
+    }
+
+    const {
+      houseName,
+      price,
+      location,
+      area,
+      kitchen,
+      bedrooms,
+      bathrooms,
+      washrooms,
+      totalFloor,
+      available,
+      description,
+    } = req.body;
+
+    const house = await House.create({
+      houseName,
+      price,
+      location,
+      area,
+      kitchen,
+      bedrooms,
+      bathrooms,
+      washrooms,
+      imageUrl: uploadResult.url,
+      addedBy: user._id,
+      totalFloor,
+      available,
+      description,
+    });
+    if (!house) {
+      logger.error('error while adding house', house);
+      return res
+        .status(400)
+        .json(new ApiResponse(400, {}, 'error while adding house'));
+    }
+
+    logger.info('house added in mongodb', house);
+    res
+      .status(201)
+      .json(new ApiResponse(201, house, 'House added successfully'));
+  },
+);
 
 /**
  * @description    Update a house
