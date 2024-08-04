@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { validateReqBody } from '../middlewares/validator.middleware';
+import { ScheduleSchema } from '../validator/validationSchema';
 import {
   addVisitSchedule,
   deleteVisitSchedule,
@@ -9,7 +11,10 @@ import {
 
 const scheduleRoute = Router();
 
-scheduleRoute.route('/').get(getVisitSchedule).post(addVisitSchedule);
+scheduleRoute
+  .route('/')
+  .get(getVisitSchedule)
+  .post(validateReqBody(ScheduleSchema), addVisitSchedule);
 scheduleRoute
   .route('/:id')
   .put(updateVisitSchedule)

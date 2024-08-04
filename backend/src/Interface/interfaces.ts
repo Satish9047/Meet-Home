@@ -19,10 +19,10 @@ export interface IHouse {
 }
 
 export interface ISchedule extends Document {
-  house: mongoose.Schema.Types.ObjectId;
-  user: mongoose.Schema.Types.ObjectId;
+  houseId: mongoose.Schema.Types.ObjectId;
+  userId: mongoose.Schema.Types.ObjectId;
   date: Date;
   time: string;
   visited: boolean;
-  userMessage: string;
+  message: string;
 }

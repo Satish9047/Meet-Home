@@ -3,7 +3,7 @@ import { asyncHandler } from '../utils/asyncHandler';
 import { Request, Response } from 'express';
 
 /**
- * @description    Get booked schedule
+ * @description    Get visit schedule
  * @route          GET /api/v1/schedule
  * @access         Public
  */
@@ -22,7 +22,7 @@ export const getVisitSchedule = asyncHandler(
 );
 
 /**
- * @description    Add booked schedule
+ * @description    Add visit schedule
  * @route          POST /api/v1/schedule
  * @access         Private (User || admin)
  */
@@ -41,7 +41,7 @@ export const addVisitSchedule = asyncHandler(
 );
 
 /**
- * @description     Update booked schedule
+ * @description     Update visit schedule
  * @route           PUT /api/v1/schedule/:id
  * @access          Private (User || admin)
  */
@@ -60,7 +60,7 @@ export const updateVisitSchedule = asyncHandler(
 );
 
 /**
- * @description     Delete booked schedule
+ * @description     Delete visit schedule
  * @route           DELETE /api/v1/schedule/:id
  * @access          Private (User || admin)
  */

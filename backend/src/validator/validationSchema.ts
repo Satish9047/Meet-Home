@@ -1,3 +1,4 @@
+import { Schedule } from './../models/schedule.model';
 import Joi from 'joi';
 
 export const authSchema = Joi.object({
@@ -17,4 +18,13 @@ export const houseSchema = Joi.object({
   totalFloor: Joi.number().required(),
   available: Joi.boolean().required(),
   description: Joi.string().required(),
+});
+
+export const ScheduleSchema = Joi.object({
+  houseId: Joi.string().required(),
+  userId: Joi.string().required(),
+  date: Joi.string().required(),
+  time: Joi.string().required(),
+  visited: Joi.boolean().required(),
+  message: Joi.string().required(),
 });
