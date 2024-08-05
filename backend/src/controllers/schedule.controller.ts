@@ -7,6 +7,7 @@ import { asyncHandler } from '../utils/asyncHandler';
 import { User } from '../models/user.model';
 import { House } from '../models/house.model';
 import { Schedule } from '../models/schedule.model';
+import logger from '../utils/logger';
 
 /**
  * @description    Get visit schedule
@@ -15,17 +16,26 @@ import { Schedule } from '../models/schedule.model';
  */
 export const getVisitSchedule = asyncHandler(
   async (req: Request, res: Response) => {
-    const visitSchedule = await Schedule.find({});
-    if (!visitSchedule) {
-      return res
-        .status(404)
-        .json(new ApiResponse(404, {}, 'VisitSchedule not found'));
+    try {
+      const visitSchedule = await Schedule.find({});
+      if (!visitSchedule) {
+        return res
+          .status(404)
+          .json(new ApiResponse(404, {}, 'VisitSchedule not found'));
+      }
+      res
+        .status(200)
+        .json(
+          new ApiResponse(200, visitSchedule, 'successfully get VisitSchedule'),
+        );
+    } catch (error) {
+      logger.error('getVisitSchedule failed', error);
+      throw new ApiError(500, 'error while getting the schedule', [
+        {
+          message: 'error while getting the schedule',
+        },
+      ]);
     }
-    res
-      .status(200)
-      .json(
-        new ApiResponse(200, visitSchedule, 'successfully get VisitSchedule'),
-      );
   },
 );
 
@@ -58,6 +68,10 @@ export const addVisitSchedule = asyncHandler(
         visited: false,
         message,
       });
+      logger.info(
+        `User ${req.user?._id} add visit schedule successfully`,
+        addVisitSchedule,
+      );
       res
         .status(201)
         .json(
@@ -68,7 +82,7 @@ export const addVisitSchedule = asyncHandler(
           ),
         );
     } catch (error) {
-      console.log('error while saving the schedule', error);
+      logger.error(`User ${req.user?._id} add visit schedule failed`, error);
       throw new ApiError(500, 'error while saving the schedule', [
         {
           message: 'error while saving the schedule',
@@ -84,7 +98,7 @@ export const addVisitSchedule = asyncHandler(
  * @access          Private (User || admin)
  */
 export const updateVisitSchedule = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: Request & { user?: JwtPayload }, res: Response) => {
     const visitScheduleId = req.params.id;
     const scheduleExist = await Schedule.findById(visitScheduleId);
     if (!scheduleExist) {
@@ -104,6 +118,10 @@ export const updateVisitSchedule = asyncHandler(
         { new: true },
       );
 
+      logger.info(
+        `User ${req.user?._id} update visit schedule ${visitScheduleId}`,
+        updateVisitSchedule,
+      );
       res.json(
         new ApiResponse(
           201,
@@ -112,7 +130,10 @@ export const updateVisitSchedule = asyncHandler(
         ),
       );
     } catch (error) {
-      console.log('error while saving the schedule', error);
+      logger.error(
+        `User ${req.user?._id} update visit schedule ${visitScheduleId} failed`,
+        error,
+      );
       throw new ApiError(500, 'error while saving the schedule', [
         {
           message: 'error while saving the schedule',
@@ -128,23 +149,38 @@ export const updateVisitSchedule = asyncHandler(
  * @access          Private (User || admin)
  */
 export const deleteVisitSchedule = asyncHandler(
-  async (req: Request, res: Response) => {
+  async (req: Request & { user?: JwtPayload }, res: Response) => {
     const visitScheduleId = req.params.id;
 
     const scheduleExist = await Schedule.findById(visitScheduleId);
     if (!scheduleExist) {
       return res.json(new ApiResponse(404, {}, 'VisitSchedule not found'));
     }
-
-    const deletedSchedule = await Schedule.findByIdAndDelete(visitScheduleId);
-    res
-      .status(201)
-      .json(
-        new ApiResponse(
-          201,
-          { message: deletedSchedule },
-          'successfully delete VisitSchedule',
-        ),
+    try {
+      const deletedSchedule = await Schedule.findByIdAndDelete(visitScheduleId);
+      logger.info(
+        `User ${req.user?._id} delete visit schedule ${visitScheduleId}`,
+        deletedSchedule,
       );
+      res
+        .status(201)
+        .json(
+          new ApiResponse(
+            201,
+            { message: deletedSchedule },
+            'successfully delete VisitSchedule',
+          ),
+        );
+    } catch (error) {
+      logger.error(
+        `User ${req.user?._id} delete visit schedule ${visitScheduleId} failed`,
+        error,
+      );
+      throw new ApiError(500, 'error while deleting the schedule', [
+        {
+          message: 'error while deleting the schedule',
+        },
+      ]);
+    }
   },
 );
