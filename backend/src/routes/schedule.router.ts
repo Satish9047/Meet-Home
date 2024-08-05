@@ -14,11 +14,11 @@ const scheduleRoute = Router();
 
 scheduleRoute
   .route('/')
-  .get(getVisitSchedule)
+  .get(jwtVerify, getVisitSchedule)
   .post(jwtVerify, validateReqBody(ScheduleSchema), addVisitSchedule);
 scheduleRoute
   .route('/:id')
-  .put(updateVisitSchedule)
-  .delete(deleteVisitSchedule);
+  .put(jwtVerify, validateReqBody(ScheduleSchema), updateVisitSchedule)
+  .delete(jwtVerify, deleteVisitSchedule);
 
 export default scheduleRoute;

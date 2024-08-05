@@ -103,12 +103,20 @@ export const updateVisitSchedule = asyncHandler(
  */
 export const deleteVisitSchedule = asyncHandler(
   async (req: Request, res: Response) => {
+    const visitScheduleId = req.params.id;
+
+    const scheduleExist = await Schedule.findById(visitScheduleId);
+    if (!scheduleExist) {
+      return res.json(new ApiResponse(404, {}, 'VisitSchedule not found'));
+    }
+
+    const deletedSchedule = await Schedule.findByIdAndDelete(visitScheduleId);
     res
       .status(201)
       .json(
         new ApiResponse(
           201,
-          { message: 'deleted bookedSchedule' },
+          { message: deletedSchedule },
           'successfully delete VisitSchedule',
         ),
       );
