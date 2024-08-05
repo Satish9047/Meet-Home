@@ -119,15 +119,6 @@ export const updateVisitSchedule = asyncHandler(
         },
       ]);
     }
-    res
-      .status(201)
-      .json(
-        new ApiResponse(
-          201,
-          { message: 'updated bookedSchedule' },
-          'successfully update VisitSchedule',
-        ),
-      );
   },
 );
 
