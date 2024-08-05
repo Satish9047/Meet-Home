@@ -8,13 +8,14 @@ import {
   getVisitSchedule,
   updateVisitSchedule,
 } from '../controllers/schedule.controller';
+import { jwtVerify } from '../middlewares/jwt.middleware';
 
 const scheduleRoute = Router();
 
 scheduleRoute
   .route('/')
   .get(getVisitSchedule)
-  .post(validateReqBody(ScheduleSchema), addVisitSchedule);
+  .post(jwtVerify, validateReqBody(ScheduleSchema), addVisitSchedule);
 scheduleRoute
   .route('/:id')
   .put(updateVisitSchedule)

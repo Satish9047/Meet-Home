@@ -9,6 +9,7 @@ import { ApiResponse } from '../utils/apiResponse';
  */
 export const validateReqBody = (schema: Joi.Schema) => {
   return (req: Request, res: Response, next: NextFunction) => {
+    console.log(req.body);
     const { error, value } = schema.validate(req.body);
 
     if (error) {

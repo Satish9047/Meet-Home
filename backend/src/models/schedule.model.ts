@@ -1,16 +1,14 @@
-import { ref, string } from 'joi';
 import mongoose from 'mongoose';
-import { text } from 'stream/consumers';
 import { ISchedule } from '../Interface/interfaces';
 
 const scheduleSchema = new mongoose.Schema(
   {
-    house: {
+    houseId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'House',
       required: true,
     },
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
       required: true,
@@ -23,12 +21,8 @@ const scheduleSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    visited: {
-      type: Boolean,
-      required: true,
-    },
-    userMessage: {
-      type: string,
+    message: {
+      type: String,
       required: true,
     },
   },

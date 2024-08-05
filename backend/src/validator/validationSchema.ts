@@ -25,6 +25,5 @@ export const ScheduleSchema = Joi.object({
   userId: Joi.string().required(),
   date: Joi.date().required(),
   time: Joi.string().required(),
-  visited: Joi.boolean().required(),
   message: Joi.string().required(),
 });
