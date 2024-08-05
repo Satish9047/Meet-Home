@@ -23,7 +23,7 @@ export const houseSchema = Joi.object({
 export const ScheduleSchema = Joi.object({
   houseId: Joi.string().required(),
   userId: Joi.string().required(),
-  date: Joi.string().required(),
+  date: Joi.date().required(),
   time: Joi.string().required(),
   visited: Joi.boolean().required(),
   message: Joi.string().required(),
