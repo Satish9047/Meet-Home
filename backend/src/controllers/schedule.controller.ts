@@ -1,16 +1,17 @@
+import { Request, Response } from 'express';
 import { JwtPayload } from 'jsonwebtoken';
+
+import { ApiError } from '../utils/apiError';
 import { ApiResponse } from '../utils/apiResponse';
 import { asyncHandler } from '../utils/asyncHandler';
-import { Request, Response } from 'express';
 import { User } from '../models/user.model';
 import { House } from '../models/house.model';
 import { Schedule } from '../models/schedule.model';
-import { ApiError } from '../utils/apiError';
 
 /**
  * @description    Get visit schedule
  * @route          GET /api/v1/schedule
- * @access         Public
+ * @access         Private (User || admin)
  */
 export const getVisitSchedule = asyncHandler(
   async (req: Request, res: Response) => {
@@ -84,6 +85,40 @@ export const addVisitSchedule = asyncHandler(
  */
 export const updateVisitSchedule = asyncHandler(
   async (req: Request, res: Response) => {
+    const visitScheduleId = req.params.id;
+    const scheduleExist = await Schedule.findById(visitScheduleId);
+    if (!scheduleExist) {
+      return res.json(new ApiResponse(404, {}, 'VisitSchedule not found'));
+    }
+    const { date, time, visited, message } = req.body;
+
+    try {
+      const updateVisitSchedule = await Schedule.findByIdAndUpdate(
+        visitScheduleId,
+        {
+          date,
+          time,
+          visited,
+          message,
+        },
+        { new: true },
+      );
+
+      res.json(
+        new ApiResponse(
+          201,
+          updateVisitSchedule,
+          'successfully update VisitSchedule',
+        ),
+      );
+    } catch (error) {
+      console.log('error while saving the schedule', error);
+      throw new ApiError(500, 'error while saving the schedule', [
+        {
+          message: 'error while saving the schedule',
+        },
+      ]);
+    }
     res
       .status(201)
       .json(
