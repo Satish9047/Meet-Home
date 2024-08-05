@@ -14,14 +14,16 @@ import { ApiError } from '../utils/apiError';
  */
 export const getVisitSchedule = asyncHandler(
   async (req: Request, res: Response) => {
+    const visitSchedule = await Schedule.find({});
+    if (!visitSchedule) {
+      return res
+        .status(404)
+        .json(new ApiResponse(404, {}, 'VisitSchedule not found'));
+    }
     res
       .status(200)
       .json(
-        new ApiResponse(
-          200,
-          { message: 'here is the bookedSchedule' },
-          'successfully get VisitSchedule',
-        ),
+        new ApiResponse(200, visitSchedule, 'successfully get VisitSchedule'),
       );
   },
 );
