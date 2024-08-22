@@ -22,9 +22,9 @@ export const routes: Routes = [
     title: 'register',
   },
   {
-    path: 'housedetail/:id',
+    path: 'houseDetail/:id',
     component: HouseDetailsComponent,
-    title: 'housedetail',
+    title: 'houseDetail',
   },
   {
     path: 'profile',

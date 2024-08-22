@@ -1,7 +1,11 @@
-<div class="container mx-auto my-2 p-4 md:flex gap-4">
-  <div class="max-w-md md:w-5/12 mx-auto">
-    <figure class="relative h-auto w-full overflow-hidden rounded-lg bg-white">
-      <img src="{{ house?.imageUrl }}" alt="{{ house?.house }}" />
+<div class="container gap-4 p-4 mx-auto my-2 md:flex">
+  <div class="max-w-md mx-auto md:w-5/12">
+    <figure class="relative w-full overflow-hidden bg-white rounded-lg">
+      <img
+        src="{{ house?.imageUrl }}"
+        alt="{{ house?.house }}"
+        class="object-cover w-full h-96"
+      />
     </figure>
   </div>
 
