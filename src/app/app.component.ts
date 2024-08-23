@@ -10,10 +10,7 @@ import { AuthService } from './core/services/auth.service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'Meet-House';
   constructor(private authService: AuthService) {}
-  ngOnInit(): void {
-    this.authService.autoLogin();
-  }
 }

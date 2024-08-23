@@ -6,6 +6,7 @@ import { AuthService } from '../../core/services/auth.service';
 import { LoadingSpinnerComponent } from '../../shared/component/loading-spinner/loading-spinner.component';
 import { ToastComponent } from '../../shared/component/toast/toast.component';
 import { Router } from '@angular/router';
+import { AuthErrorResponse } from '../../core/interface/app';
 
 @Component({
   selector: 'app-login',
@@ -37,17 +38,19 @@ export class LoginComponent {
     });
   }
 
-  //login USING AUTHSERVICE FOR LOGIN
+  //login USING AUTH SERVICE FOR LOGIN
   onSubmit() {
     const { email, password } = this.loginForm.value;
     this.isLoading = true;
     this.authService.getLogin(email, password).subscribe({
       next: (resData) => {
+        console.log('from login', resData);
         this.isLoading = false;
         this.router.navigate(['/']);
       },
       error: (errorMessage) => {
-        this.error = errorMessage;
+        console.log('from login', errorMessage);
+        this.error = errorMessage.error.message;
         this.isLoading = false;
       },
     });

@@ -1,7 +1,7 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex flex-col justify-center min-h-full px-6 py-12 lg:px-8">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
     <h2
-      class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white"
+      class="mt-10 text-2xl font-bold leading-9 tracking-tight text-center text-white"
     >
       Login to your account
     </h2>
@@ -11,7 +11,7 @@
     @if (error) {
       <div><app-toast [errorMessage]="error" /></div>
     }
-    
+
     @if (!isLoading) {
       <form class="space-y-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div>
@@ -100,11 +100,11 @@
       <div class="text-center"><app-loading-spinner /></div>
     }
 
-    <p class="mt-10 text-center text-sm text-gray-300">
+    <p class="mt-10 text-sm text-center text-gray-300">
       Don't have an account?
       <a
         routerLink="/register"
-        class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 cursor-pointer"
+        class="font-semibold leading-6 text-indigo-600 cursor-pointer hover:text-indigo-500"
         >Regiser Here</a
       >
     </p>

@@ -10,6 +10,7 @@ import {
 import { LoadingSpinnerComponent } from '../../shared/component/loading-spinner/loading-spinner.component';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from '../../shared/component/toast/toast.component';
+import { AuthResponseData } from '../../core/interface/app';
 
 @Component({
   selector: 'app-register',
@@ -47,11 +48,13 @@ export class RegisterComponent {
     this.isLoading = true;
     this.AuthService.getRegister(email, password).subscribe({
       next: (resData) => {
+        console.log('from register', resData);
         this.isLoading = false;
         this.router.navigate(['/login']);
       },
-      error: (errorMessage: string) => {
-        this.error = errorMessage;
+      error: (errorMessage) => {
+        console.log('from register', errorMessage);
+        this.error = errorMessage.error.message;
         setTimeout(() => {
           this.error = null;
         }, 3000);
