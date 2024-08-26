@@ -1,31 +1,38 @@
 <div class="container flex justify-center p-4 mx-auto my-4">
-  <div
-    class="grid w-full gap-x-8 gap-y-12 md:grid-cols-2 xl:col-span-2 lg:grid-cols-3 md:w-10/12"
-  >
+  @if (isLoading) {
+    <div class="flex items-center justify-center w-full h-full">
+      <img src="/Eclipse@1x-1.0s-200px-200px(1).svg" alt="loader" />
+    </div>
+  } @else {
     <div
-      class="flex flex-col items-center justify-start rounded-lg shadow-2xl gap-x-6 gap-y-6 bg-slate-600"
-      *ngFor="let house of filteredHouse; let i = index"
+      class="grid w-full gap-x-8 gap-y-12 md:grid-cols-2 xl:col-span-2 lg:grid-cols-3 md:w-10/12"
     >
-      <figure
-        class="relative object-cover w-full overflow-hidden rounded-xl h-52 min-w-40"
+      <div
+        class="flex flex-col items-center justify-start rounded-lg shadow-2xl gap-x-6 gap-y-6 bg-slate-600"
+        *ngFor="let house of filteredHouse; let i = index"
       >
-        <img
-          [ngSrc]="house.imageUrl"
-          alt="{{ house.house }}"
-          fill
-          class="object-cover w-full h-auto overflow-hidden rounded-xl min-w-40"
-        />
-      </figure>
-      <div class="w-full p-4">
-        <h2 class="card-title">{{ house.house }}</h2>
-        <p>{{ house.location }}</p>
-        <p>${{ house.price }}</p>
-        <div class="justify-end card-actions">
-          <a [routerLink]="['houseDetail', house.id]">
-            <button class="text-slate-100 btn btn-primary">Details</button>
-          </a>
+        <figure
+          class="relative object-cover w-full overflow-hidden rounded-xl h-52 min-w-40"
+        >
+          <img
+            [ngSrc]="house.imageUrl"
+            alt="{{ house.house }}"
+            fill
+            priority
+            class="object-cover w-full h-auto overflow-hidden rounded-xl min-w-40"
+          />
+        </figure>
+        <div class="w-full p-4">
+          <h2 class="card-title">{{ house.house }}</h2>
+          <p>{{ house.location }}</p>
+          <p>${{ house.price }}</p>
+          <div class="justify-end card-actions">
+            <a [routerLink]="['houseDetail', house._id]">
+              <button class="text-slate-100 btn btn-primary">Details</button>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  }
 </div>

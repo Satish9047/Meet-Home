@@ -1,8 +1,8 @@
-import { IHouse } from '../interface/app';
+import { House } from '../interface/app';
 
-export const houses: IHouse[] = [
+export const houses: House[] = [
   {
-    id: 1,
+    _id: 1,
     house: 'Cozy Studio Apartment',
     price: 850,
     location: 'Downtown, Cityville',
@@ -20,7 +20,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-20'),
   },
   {
-    id: 2,
+    _id: 2,
     house: 'Spacious Two-Bedroom Home',
     price: 1200,
     location: 'Midtown, Cityville',
@@ -39,7 +39,7 @@ export const houses: IHouse[] = [
   },
 
   {
-    id: 3,
+    _id: 3,
     house: 'Luxury Family Home',
     price: 3500,
     location: 'Suburbs, Cityville',
@@ -57,7 +57,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-18'),
   },
   {
-    id: 4,
+    _id: 4,
     house: 'Modern Studio Loft',
     price: 1000,
     location: 'Uptown, Cityville',
@@ -75,7 +75,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-16'),
   },
   {
-    id: 5,
+    _id: 5,
     house: 'Waterfront Townhouse',
     price: 2000,
     location: 'Lakeside District, Cityville',
@@ -93,7 +93,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-15'),
   },
   {
-    id: 6,
+    _id: 6,
     house: 'Cozy Garden Apartment',
     price: 900,
     location: 'Historic District, Cityville',
@@ -111,7 +111,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-14'),
   },
   {
-    id: 7,
+    _id: 7,
     house: 'Spacious Family Home',
     price: 2800,
     location: 'Suburbs, Cityville',
@@ -129,7 +129,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-13'),
   },
   {
-    id: 8,
+    _id: 8,
     house: 'Charming Bungalow',
     price: 1500,
     location: 'Quiet Neighborhood, Cityville',
@@ -147,7 +147,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-17'),
   },
   {
-    id: 9,
+    _id: 9,
     house: 'Urban One-Bedroom Apartment',
     price: 1100,
     location: 'Downtown, Cityville',
@@ -165,7 +165,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-20'),
   },
   {
-    id: 10,
+    _id: 10,
     house: 'Suburban Three-Bedroom House',
     price: 2200,
     location: 'Suburbs, Cityville',
@@ -183,7 +183,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-19'),
   },
   {
-    id: 11,
+    _id: 11,
     house: 'Cozy Cottage',
     price: 1800,
     location: 'Countryside, Cityville',
@@ -201,7 +201,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-18'),
   },
   {
-    id: 12,
+    _id: 12,
     house: 'Modern Penthouse',
     price: 4500,
     location: 'Downtown, Cityville',
@@ -219,7 +219,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-17'),
   },
   {
-    id: 13,
+    _id: 13,
     house: 'Eco-Friendly Apartment',
     price: 1300,
     location: 'Green District, Cityville',
@@ -237,7 +237,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-16'),
   },
   {
-    id: 14,
+    _id: 14,
     house: 'Family Townhouse',
     price: 2400,
     location: 'Residential Area, Cityville',
@@ -255,7 +255,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-15'),
   },
   {
-    id: 15,
+    _id: 15,
     house: 'Artist’s Loft',
     price: 900,
     location: 'Arts District, Cityville',
@@ -273,7 +273,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-14'),
   },
   {
-    id: 16,
+    _id: 16,
     house: 'Downtown Duplex',
     price: 2700,
     location: 'Downtown, Cityville',
@@ -291,7 +291,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-13'),
   },
   {
-    id: 17,
+    _id: 17,
     house: 'Penthouse with Terrace',
     price: 4000,
     location: 'City Center, Cityville',
@@ -309,7 +309,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-12'),
   },
   {
-    id: 18,
+    _id: 18,
     house: 'Seaside Villa',
     price: 5000,
     location: 'Seaside, Cityville',
@@ -327,7 +327,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-11'),
   },
   {
-    id: 19,
+    _id: 19,
     house: 'Mountain Cabin',
     price: 2000,
     location: 'Mountain Range, Cityville',
@@ -345,7 +345,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-10'),
   },
   {
-    id: 20,
+    _id: 20,
     house: 'Downtown Studio Apartment',
     price: 850,
     location: 'Downtown, Cityville',
@@ -363,7 +363,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-09'),
   },
   {
-    id: 21,
+    _id: 21,
     house: 'Historic Manor',
     price: 6000,
     location: 'Historic District, Cityville',
@@ -381,7 +381,7 @@ export const houses: IHouse[] = [
     updatedAt: new Date('2024-06-08'),
   },
   {
-    id: 22,
+    _id: 22,
     house: 'Compact Urban Apartment',
     price: 700,
     location: 'City Center, Cityville',

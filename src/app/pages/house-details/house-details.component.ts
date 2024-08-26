@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HouseService } from '../../core/services/house.service';
-import { IHouse } from '../../core/interface/app';
+import { House } from '../../core/interface/app';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,17 +12,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HouseDetailsComponent implements OnInit {
   houseId: number = 0;
-  house: undefined | IHouse;
+  house: undefined | House;
   constructor(
     private route: ActivatedRoute,
     private houseService: HouseService,
   ) {}
   ngOnInit() {
-    this.houseId = Number(this.route.snapshot.params['id']);
+    this.houseId = this.route.snapshot.params['id'];
+    console.log('from house detail', this.houseId);
 
     if (this.houseId) {
-      this.houseService.getHouseById(this.houseId).subscribe((data) => {
-        this.house = data;
+      console.log('from house detail', this.houseId);
+      this.houseService.getHouseById(this.houseId).subscribe((responseData) => {
+        console.log('from house detail', responseData);
+        this.house = responseData.data;
       });
     }
   }

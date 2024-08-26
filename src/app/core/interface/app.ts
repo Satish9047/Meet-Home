@@ -1,5 +1,6 @@
-export interface IHouse {
-  id: number;
+import { houses } from './../../../../backend/src/data/house';
+export interface House {
+  _id: number;
   house: string;
   price: number;
   location: string;
@@ -36,4 +37,23 @@ export interface AuthErrorResponse {
   data: {};
   message: string;
   success: boolean;
+}
+
+export interface HouseResponseData {
+  statusCode: number;
+  data: {
+    houses: House[];
+    Page: number;
+    limit: number;
+    totalPages: number;
+    totalHouse: number;
+  };
+  message: string;
+  success: string;
+}
+export interface HouseDetailsResponseData {
+  statusCode: number;
+  data: House;
+  message: string;
+  success: string;
 }
