@@ -3,7 +3,7 @@ import { House } from '../interface/app';
 export const houses: House[] = [
   {
     _id: 1,
-    house: 'Cozy Studio Apartment',
+    houseName: 'Cozy Studio Apartment',
     price: 850,
     location: 'Downtown, Cityville',
     area: '400 sq ft',
@@ -21,7 +21,7 @@ export const houses: House[] = [
   },
   {
     _id: 2,
-    house: 'Spacious Two-Bedroom Home',
+    houseName: 'Spacious Two-Bedroom Home',
     price: 1200,
     location: 'Midtown, Cityville',
     area: '800 sq ft',
@@ -40,7 +40,7 @@ export const houses: House[] = [
 
   {
     _id: 3,
-    house: 'Luxury Family Home',
+    houseName: 'Luxury Family Home',
     price: 3500,
     location: 'Suburbs, Cityville',
     area: '3000 sq ft',
@@ -58,7 +58,7 @@ export const houses: House[] = [
   },
   {
     _id: 4,
-    house: 'Modern Studio Loft',
+    houseName: 'Modern Studio Loft',
     price: 1000,
     location: 'Uptown, Cityville',
     area: '500 sq ft',
@@ -76,7 +76,7 @@ export const houses: House[] = [
   },
   {
     _id: 5,
-    house: 'Waterfront Townhouse',
+    houseName: 'Waterfront Townhouse',
     price: 2000,
     location: 'Lakeside District, Cityville',
     area: '1500 sq ft',
@@ -94,7 +94,7 @@ export const houses: House[] = [
   },
   {
     _id: 6,
-    house: 'Cozy Garden Apartment',
+    houseName: 'Cozy Garden Apartment',
     price: 900,
     location: 'Historic District, Cityville',
     area: '600 sq ft',
@@ -112,7 +112,7 @@ export const houses: House[] = [
   },
   {
     _id: 7,
-    house: 'Spacious Family Home',
+    houseName: 'Spacious Family Home',
     price: 2800,
     location: 'Suburbs, Cityville',
     area: '2500 sq ft',
@@ -130,7 +130,7 @@ export const houses: House[] = [
   },
   {
     _id: 8,
-    house: 'Charming Bungalow',
+    houseName: 'Charming Bungalow',
     price: 1500,
     location: 'Quiet Neighborhood, Cityville',
     area: '1200 sq ft',
@@ -148,7 +148,7 @@ export const houses: House[] = [
   },
   {
     _id: 9,
-    house: 'Urban One-Bedroom Apartment',
+    houseName: 'Urban One-Bedroom Apartment',
     price: 1100,
     location: 'Downtown, Cityville',
     area: '650 sq ft',
@@ -166,7 +166,7 @@ export const houses: House[] = [
   },
   {
     _id: 10,
-    house: 'Suburban Three-Bedroom House',
+    houseName: 'Suburban Three-Bedroom House',
     price: 2200,
     location: 'Suburbs, Cityville',
     area: '1800 sq ft',
@@ -184,7 +184,7 @@ export const houses: House[] = [
   },
   {
     _id: 11,
-    house: 'Cozy Cottage',
+    houseName: 'Cozy Cottage',
     price: 1800,
     location: 'Countryside, Cityville',
     area: '1400 sq ft',
@@ -202,7 +202,7 @@ export const houses: House[] = [
   },
   {
     _id: 12,
-    house: 'Modern Penthouse',
+    houseName: 'Modern Penthouse',
     price: 4500,
     location: 'Downtown, Cityville',
     area: '2000 sq ft',
@@ -220,7 +220,7 @@ export const houses: House[] = [
   },
   {
     _id: 13,
-    house: 'Eco-Friendly Apartment',
+    houseName: 'Eco-Friendly Apartment',
     price: 1300,
     location: 'Green District, Cityville',
     area: '700 sq ft',
@@ -238,7 +238,7 @@ export const houses: House[] = [
   },
   {
     _id: 14,
-    house: 'Family Townhouse',
+    houseName: 'Family Townhouse',
     price: 2400,
     location: 'Residential Area, Cityville',
     area: '1600 sq ft',
@@ -256,7 +256,7 @@ export const houses: House[] = [
   },
   {
     _id: 15,
-    house: 'Artist’s Loft',
+    houseName: 'Artist’s Loft',
     price: 900,
     location: 'Arts District, Cityville',
     area: '600 sq ft',
@@ -274,7 +274,7 @@ export const houses: House[] = [
   },
   {
     _id: 16,
-    house: 'Downtown Duplex',
+    houseName: 'Downtown Duplex',
     price: 2700,
     location: 'Downtown, Cityville',
     area: '1400 sq ft',
@@ -292,7 +292,7 @@ export const houses: House[] = [
   },
   {
     _id: 17,
-    house: 'Penthouse with Terrace',
+    houseName: 'Penthouse with Terrace',
     price: 4000,
     location: 'City Center, Cityville',
     area: '2200 sq ft',
@@ -310,7 +310,7 @@ export const houses: House[] = [
   },
   {
     _id: 18,
-    house: 'Seaside Villa',
+    houseName: 'Seaside Villa',
     price: 5000,
     location: 'Seaside, Cityville',
     area: '3500 sq ft',
@@ -328,7 +328,7 @@ export const houses: House[] = [
   },
   {
     _id: 19,
-    house: 'Mountain Cabin',
+    houseName: 'Mountain Cabin',
     price: 2000,
     location: 'Mountain Range, Cityville',
     area: '1800 sq ft',
@@ -346,7 +346,7 @@ export const houses: House[] = [
   },
   {
     _id: 20,
-    house: 'Downtown Studio Apartment',
+    houseName: 'Downtown Studio Apartment',
     price: 850,
     location: 'Downtown, Cityville',
     area: '400 sq ft',
@@ -364,7 +364,7 @@ export const houses: House[] = [
   },
   {
     _id: 21,
-    house: 'Historic Manor',
+    houseName: 'Historic Manor',
     price: 6000,
     location: 'Historic District, Cityville',
     area: '5000 sq ft',
@@ -382,7 +382,7 @@ export const houses: House[] = [
   },
   {
     _id: 22,
-    house: 'Compact Urban Apartment',
+    houseName: 'Compact Urban Apartment',
     price: 700,
     location: 'City Center, Cityville',
     area: '300 sq ft',

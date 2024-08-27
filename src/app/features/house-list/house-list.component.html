@@ -16,14 +16,14 @@
         >
           <img
             [ngSrc]="house.imageUrl"
-            alt="{{ house.house }}"
+            alt="{{ house.houseName }}"
             fill
             priority
             class="object-cover w-full h-auto overflow-hidden rounded-xl min-w-40"
           />
         </figure>
         <div class="w-full p-4">
-          <h2 class="card-title">{{ house.house }}</h2>
+          <h2>{{ house.houseName }}</h2>
           <p>{{ house.location }}</p>
           <p>${{ house.price }}</p>
           <div class="justify-end card-actions">

@@ -1,7 +1,7 @@
 import { houses } from './../../../../backend/src/data/house';
 export interface House {
   _id: number;
-  house: string;
+  houseName: string;
   price: number;
   location: string;
   area: string;

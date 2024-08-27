@@ -12,15 +12,16 @@ import { SearchService } from '../../core/services/search.service';
 })
 export class SearchComponent {
   searchForm: FormGroup;
+
   constructor(private searchService: SearchService) {
     this.searchForm = new FormGroup({
       searchText: new FormControl(''),
     });
   }
+
   handleSearch() {
     console.log(this.searchForm.value);
     const searchTerm: string = this.searchForm.get('searchText')?.value || '';
-    // console.log(searchTerm, 'hello form seach term');
-    this.searchService.setSearch(searchTerm);
+    this.searchService.onSearch(searchTerm);
   }
 }

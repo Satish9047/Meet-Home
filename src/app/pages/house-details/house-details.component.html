@@ -3,7 +3,7 @@
     <figure class="relative w-full overflow-hidden bg-white rounded-lg">
       <img
         src="{{ house?.imageUrl }}"
-        alt="{{ house?.house }}"
+        alt="{{ house?.houseName }}"
         class="object-cover w-full h-96"
       />
     </figure>
@@ -11,7 +11,7 @@
 
   <div class="md:w-7/12">
     <div>
-      <h1>{{ house?.house }}</h1>
+      <h1>{{ house?.houseName }}</h1>
       <p>location: {{ house?.location }}</p>
       <p>area: {{ house?.area }}</p>
       <p>kitchen: {{ house?.kitchen }}</p>

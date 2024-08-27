@@ -4,6 +4,7 @@ import { HouseService } from './../../core/services/house.service';
 import { Component, OnInit } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SearchService } from '../../core/services/search.service';
 
 @Component({
   selector: 'app-house-list',
@@ -18,7 +19,7 @@ export class HouseListComponent implements OnInit {
   filteredHouse: House[] = [];
   constructor(
     private houseService: HouseService,
-    // private searchService: SearchService,
+    private searchService: SearchService,
   ) {}
   ngOnInit() {
     this.houseService.getAllHouses().subscribe((responseData) => {
