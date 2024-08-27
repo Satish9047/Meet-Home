@@ -21,11 +21,22 @@ export const getHouse = asyncHandler(async (req: Request, res: Response) => {
   const limit = parseInt(req.query.limit as string) || 10;
   const skip = (page - 1) * limit;
 
-  const houses = await House.find({}).skip(skip).limit(limit);
+  const searchQuery = req.query.search;
+  const searchCriteria = searchQuery
+    ? {
+        $or: [
+          { houseName: { $regex: searchQuery, $options: 'i' } },
+          { description: { $regex: searchQuery, $options: 'i' } },
+          { location: { $regex: searchQuery, $options: 'i' } },
+        ],
+      }
+    : {};
+  const houses = await House.find(searchCriteria).skip(skip).limit(limit);
 
   if (!houses || houses.length === 0) {
     res.status(404).json(new ApiResponse(404, {}, 'No house found'));
   }
+  console.log(houses);
 
   const totalHouse = await House.countDocuments({});
   const totalPages = Math.ceil(totalHouse / limit);
