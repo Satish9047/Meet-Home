@@ -8,12 +8,18 @@ import { HouseResponseData } from '../interface/app';
 })
 export class SearchService {
   constructor(private http: HttpClient) {}
-  private searchSubject = new BehaviorSubject<string>('');
-  search$ = this.searchSubject.asObservable();
+  private searchResultSubject = new BehaviorSubject<HouseResponseData | null>(
+    null,
+  );
+  searchResult$ = this.searchResultSubject.asObservable();
 
-  onSearch(param: string): Observable<HouseResponseData> {
-    return this.http.get<HouseResponseData>(
-      `http://localhost:4000/api/v1/house?search=${param}`,
-    );
+  onSearch(param: string): void {
+    this.http
+      .get<HouseResponseData>(
+        `http://localhost:4000/api/v1/house?search=${param}`,
+      )
+      .subscribe((responseData) => {
+        this.searchResultSubject.next(responseData);
+      });
   }
 }

@@ -1,10 +1,10 @@
+import { SearchService } from './../../core/services/search.service';
 import { NgFor } from '@angular/common';
 import { House } from '../../core/interface/app';
 import { HouseService } from './../../core/services/house.service';
 import { Component, OnInit } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { SearchService } from '../../core/services/search.service';
 
 @Component({
   selector: 'app-house-list',
@@ -15,12 +15,14 @@ import { SearchService } from '../../core/services/search.service';
 })
 export class HouseListComponent implements OnInit {
   isLoading: boolean = true;
-  // houseList: House[] = [];
+  houseList: House[] = [];
   filteredHouse: House[] = [];
+
   constructor(
     private houseService: HouseService,
     private searchService: SearchService,
   ) {}
+
   ngOnInit() {
     this.houseService.getAllHouses().subscribe((responseData) => {
       console.log('from house list', responseData.data.houses);
@@ -28,18 +30,15 @@ export class HouseListComponent implements OnInit {
       this.filteredHouse = responseData.data.houses;
       this.isLoading = false;
     });
+
+    //subscribe to search service
+    this.searchService.searchResult$.subscribe((responseData) => {
+      if (responseData) {
+        this.filteredHouse = responseData.data.houses;
+      } else {
+        this.filteredHouse = this.houseList;
+      }
+      this.isLoading = false;
+    });
   }
 }
-
-// this.houses = this.houseService.getAllHouses();
-
-//     this.searchService.search$.subscribe((search) => {
-//       if (search) {
-//         this.filteredHouse = this.houses.filter((house) =>
-//           house.house.toLowerCase().includes(search.toLowerCase()),
-//         );
-//         console.log(this.filteredHouse);
-//       } else {
-//         this.filteredHouse = this.houses;
-//       }
-//     });
