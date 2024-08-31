@@ -31,6 +31,7 @@ export class AuthService {
         email: email,
         password: password,
       },
+      { withCredentials: true },
     );
   }
 
