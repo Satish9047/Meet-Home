@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { User } from '../model/user.model';
 import { Router } from '@angular/router';
 import { AuthResponseData } from '../interface/app';
@@ -9,13 +9,17 @@ import { AuthResponseData } from '../interface/app';
   providedIn: 'root',
 })
 export class AuthService {
-  user = new BehaviorSubject<User | null>(null);
-  private tokenExpirationTimer: any;
+  userSubject = new BehaviorSubject<User | null>(null);
+  // private tokenExpirationTimer: any;
 
   constructor(
     private http: HttpClient,
     private router: Router,
   ) {}
+
+  getUserState(): Observable<User | null> {
+    return this.userSubject.asObservable();
+  }
 
   /**
    * Login logic
@@ -25,14 +29,32 @@ export class AuthService {
    * @returns Observable
    */
   getLogin(email: string, password: string) {
-    return this.http.post<AuthResponseData>(
-      'http://localhost:4000/api/v1/auth/login',
-      {
-        email: email,
-        password: password,
-      },
-      { withCredentials: true },
-    );
+    return this.http
+      .post<AuthResponseData>(
+        'http://localhost:4000/api/v1/auth/login',
+        {
+          email: email,
+          password: password,
+        },
+        { withCredentials: true },
+      )
+      .pipe(
+        tap((response) => {
+          // const expirationDate = new Date(
+          //   new Date().getTime() + 60 * 60 * 1000,
+          // );
+
+          const user = new User(
+            response.data._id,
+            response.data.email,
+            response.data.isAdmin,
+          );
+
+          this.userSubject.next(user);
+          localStorage.setItem('userData', JSON.stringify(user));
+          // this.autoLogout(60 * 60 * 1000);
+        }),
+      );
   }
 
   /**
@@ -53,12 +75,7 @@ export class AuthService {
   }
 
   getLogout() {
-    this.user.next(null);
-    this.router.navigate(['/login']);
+    this.userSubject.next(null);
     localStorage.removeItem('userData');
-    if (this.tokenExpirationTimer) {
-      clearTimeout(this.tokenExpirationTimer);
-    }
-    this.tokenExpirationTimer = null;
   }
 }

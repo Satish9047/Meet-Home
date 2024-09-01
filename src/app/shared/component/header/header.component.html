@@ -1,9 +1,9 @@
 <div class="container mx-auto navbar bg-base-100">
   <div class="flex-1">
-    <a routerLink="" class="btn btn-ghost text-xl">Meet Homes</a>
+    <a routerLink="" class="text-xl btn btn-ghost">Meet Homes</a>
   </div>
   <div class="flex-none">
-    <ul class="menu menu-horizontal px-1">
+    <ul class="px-1 menu menu-horizontal">
       @if (!isAuthenticated) {
         <menu class="hidden md:flex">
           <li><a routerLink="login">Login</a></li>
@@ -14,7 +14,7 @@
         <li>
           <details>
             <summary>{{ user?.email }}</summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
+            <ul class="p-2 rounded-t-none bg-base-100">
               <li><a routerLink="profile">Profile</a></li>
               <li><a (click)="logout()">Logout</a></li>
             </ul>
@@ -26,7 +26,7 @@
         <li class="md:hidden">
           <details>
             <summary>menu</summary>
-            <ul class="p-2 bg-base-100 rounded-t-none">
+            <ul class="p-2 rounded-t-none bg-base-100">
               <li><a routerLink="login">login</a></li>
               <li><a routerLink="register">Register</a></li>
             </ul>

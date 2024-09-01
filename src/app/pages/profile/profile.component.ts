@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     private router: Router,
   ) {}
   ngOnInit() {
-    this.authService.user.subscribe((user) => {
+    this.authService.userSubject.subscribe((user) => {
       if (!user) {
         this.router.navigate(['/login']);
       }
